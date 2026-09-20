@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE07">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S7 · Sensores y ciclo | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/trueorfalse/trueorfalse.js"></script><link rel="stylesheet" href="../idevices/trueorfalse/trueorfalse.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE07" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li class="active"> <a href="../html/s7-sensores-y-ciclo.html" class="active no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE07" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">8</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S7 · Sensores y ciclo</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE07" class="page-content">
+<article id="20260729BRAZOBLK007" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV007" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV007&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Que el robot decida solo</p>
+  <p>Hasta ahora el brazo hacía lo que vosotros le mandabais con los pulsadores. Hoy dais el paso que
+  convierte una máquina teledirigida en un <strong>robot de verdad</strong>: que <em>mire</em> la pieza
+  y <em>decida</em> él a qué bandeja llevarla.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">El sensor de luz (LDR)</p>
+  <p>El shield lleva un <strong>LDR</strong> en el pin <strong>A1</strong>. Es una resistencia que cambia
+  según la luz que recibe, así que sirve para saber si lo que tiene delante es claro u oscuro:</p>
+  <ul>
+    <li>Pieza <strong>clara</strong> → refleja mucha luz → el valor sube.</li>
+    <li>Pieza <strong>oscura</strong> → refleja poca luz → el valor baja.</li>
+  </ul>
+  <p>Se lee con <code>Leer analógica Pin A1</code> y da un número de 0 a 1023.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Práctica guiada · Calibrar el umbral</p>
+  <p>El valor que separa «claro» de «oscuro» <strong>no se puede saber de antemano</strong>: depende de
+  la luz que haya en el sitio donde esté vuestro brazo. Hay que medirlo. Esto se llama
+  <strong>calibrar</strong> y es lo que se hace con cualquier sensor real.</p>
+  <ol>
+    <li>Programa: en <strong>Bucle</strong>, <em>escribir en el puerto serie</em>
+    <code>Leer analógica Pin A1</code>, y debajo <code>Esperar 300 milisegundos</code>.
+    (El bloque del puerto serie está en <em>Comunicaciones › Puerto serie</em>.)</li>
+    <li>Subid el programa y abrid el <strong>monitor serie</strong>.</li>
+    <li>Poned una <strong>pieza clara</strong> bajo el sensor. Apuntad el valor: ______</li>
+    <li>Poned una <strong>pieza oscura</strong>. Apuntad el valor: ______</li>
+    <li>Vuestro <strong>umbral</strong> es el punto medio entre los dos. Por ejemplo, si sale 700 y 300,
+    el umbral es <strong>500</strong>.</li>
+  </ol>
+  <p><strong>Si los dos valores salen casi iguales</strong>, el sensor no distingue las piezas: acercadlo
+  más, o usad piezas con más contraste (blanca y negra, no dos grises).</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">El ciclo completo</p>
+  <p>Un <strong>ciclo</strong> es la secuencia que el robot repite con cada pieza. El vuestro es este:</p>
+  <svg viewBox="0 0 700 330" role="img" aria-label="Diagrama de flujo del ciclo de clasificación: leer el sensor de luz y llevar la pieza a la bandeja clara o a la oscura" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="700" height="330" fill="#fdfbf9"/>
+<defs><marker id="fl2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>
+<rect x="264" y="16" width="172" height="40" rx="20" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
+<text x="350" y="42" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2f568a">Pulsas SW1 (pin 2)</text>
+<line x1="350" y1="56" x2="350" y2="82" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<rect x="248" y="86" width="204" height="42" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
+<text x="350" y="112" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Leer analógica Pin A1 (LDR)</text>
+<line x1="350" y1="128" x2="350" y2="152" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<path d="M 350 154 L 470 200 L 350 246 L 230 200 Z" fill="#fff7e6" stroke="#a67c1a" stroke-width="3"/>
+<text x="350" y="196" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#7a5a0e">¿valor &lt; umbral?</text>
+<text x="350" y="216" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7a5a0e">(pieza oscura)</text>
+<line x1="230" y1="200" x2="150" y2="200" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="190" y="190" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2e8b57">Sí</text>
+<line x1="470" y1="200" x2="552" y2="200" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="512" y="190" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">No</text>
+<rect x="16" y="176" width="132" height="48" rx="6" fill="#e7f2ec" stroke="#2e8b57" stroke-width="3"/>
+<text x="82" y="198" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">Base a 45°</text>
+<text x="82" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">bandeja oscura</text>
+<rect x="554" y="176" width="132" height="48" rx="6" fill="#fdeaea" stroke="#a33" stroke-width="3"/>
+<text x="620" y="198" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">Base a 135°</text>
+<text x="620" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">bandeja clara</text>
+<line x1="82" y1="224" x2="82" y2="266" stroke="#555" stroke-width="3"/>
+<line x1="620" y1="224" x2="620" y2="266" stroke="#555" stroke-width="3"/>
+<line x1="82" y1="266" x2="620" y2="266" stroke="#555" stroke-width="3"/>
+<line x1="350" y1="266" x2="350" y2="286" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<rect x="238" y="288" width="224" height="38" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
+<text x="350" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Bajar paleta · subir · volver a 90°</text>
+</svg>
+  <p>Fijaos en la forma del programa: hay un <strong>condicional dentro de otro</strong>. Primero
+  compruebas si han pulsado el botón; solo si lo han pulsado, compruebas si la pieza es clara u oscura.
+  Eso se llama <strong>condicionales anidadas</strong> y es la estructura que usan casi todos los
+  automatismos.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · El clasificador</p>
+  <p>Cread un proyecto <strong>UNO</strong> llamado <code>S7 clasificador</code> y programad el ciclo
+  entero.</p>
+  <p>La estructura, en palabras:</p>
+  <ol>
+    <li><strong>Si</strong> <code>Leer digital Pin 2</code> es ON (han puesto una pieza y pulsan):
+      <ol>
+        <li>Leer <code>Leer analógica Pin A1</code> y guardarlo en una variable <code>luz</code>.</li>
+        <li><strong>Si</strong> <code>luz</code> &lt; vuestro umbral → base (pin 7) a <strong>45°</strong>.</li>
+        <li><strong>Si no</strong> → base (pin 7) a <strong>135°</strong>.</li>
+        <li>Bajar el antebrazo (pin 8), esperar, subirlo.</li>
+        <li>Volver la base a <strong>90°</strong>.</li>
+      </ol>
+    </li>
+  </ol>
+  <p><strong>Mínimo para dar la tarea por hecha:</strong> el brazo distingue las dos piezas y lleva cada
+  una a un lado distinto, aunque haga falta colocársela a mano.</p>
+  <p><strong>Si queréis ir más allá</strong>, elegid una o varias:</p>
+  <ul>
+    <li>Encender el <strong>LED azul (pin 13)</strong> con las piezas claras y el
+    <strong>rojo (pin 12)</strong> con las oscuras.</li>
+    <li>Un <strong>pitido</strong> con el zumbador (pin 5) al terminar cada pieza.</li>
+    <li>Una <strong>tercera bandeja</strong> para las piezas intermedias, con un tercer caso.</li>
+    <li>Un <strong>contador</strong> de piezas clasificadas que se muestre en el monitor serie.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Cuando algo no sale</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Lo que pasa</th><th>Qué mirar</th></tr></thead>
+    <tbody>
+      <tr><td>Manda todas las piezas al mismo lado</td><td>el umbral está mal: vuelve a calibrar con el monitor serie</td></tr>
+      <tr><td>Hace el ciclo varias veces de un tirón</td><td>falta un <code>Esperar</code> al final, o soltáis el pulsador tarde</td></tr>
+      <tr><td>El brazo se pasa y choca</td><td>reducid los ángulos: en vez de 45 y 135, probad 60 y 120</td></tr>
+      <tr><td>Va bien y de pronto falla</td><td>¿ha cambiado la luz de la sala? Recalibrad</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>. <strong>Hoy sí: cuando lo tengáis todo subido,
+  pulsad «Entregar»</strong>. Esta tarea se cierra hoy.</p>
+  <ul>
+    <li><code>s7_bloques.png</code> — captura del programa del clasificador.</li>
+    <li><code>s7_ciclo.mp4</code> — vídeo de unos 30 segundos con <strong>al menos dos piezas
+    distintas</strong>, para que se vea que decide. Con el <strong>papelito de iniciales y curso</strong>.</li>
+    <li><code>s7_umbral.txt</code> — un archivo de texto de tres líneas: el valor con pieza clara, el
+    valor con pieza oscura y el umbral que habéis elegido.</li>
+  </ul>
+  <p>Comprobad que están también los archivos de las sesiones 2, 5 y 6 antes de entregar.</p>
+</div>
+</div>
+</div>
+</article><article id="block-1789892177716-d0cek36up" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Verdadero o falso</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1789892178420-a09z3t0nx" class="idevice_node trueorfalse" data-idevice-path="../idevices/trueorfalse/" data-idevice-type="trueorfalse" data-idevice-component-type="json" data-idevice-json-data="{&quot;id&quot;:&quot;idevice-1789892178420-a09z3t0nx&quot;,&quot;typeGame&quot;:&quot;TrueOrFalse&quot;,&quot;eXeGameInstructions&quot;:&quot;&lt;p&gt;Decide si cada afirmación sobre el LDR y la calibración es verdadera o falsa.&lt;/p&gt;&quot;,&quot;eXeIdeviceTextAfter&quot;:&quot;&quot;,&quot;msgs&quot;:{&quot;msgStartGame&quot;:&quot;Pulsa aquí para empezar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgNoImage&quot;:&quot;Pregunta sin imágenes&quot;,&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgEndGameScore&quot;:&quot;Comience la partida antes de guardar la puntuación.&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgYouScore&quot;:&quot;Su puntuación&quot;,&quot;msgAuthor&quot;:&quot;Autoría&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgTypeGame&quot;:&quot;Verdadero o falso&quot;,&quot;msgFeedback&quot;:&quot;Retroalimentación&quot;,&quot;msgSuggestion&quot;:&quot;Sugerencia&quot;,&quot;msgSolution&quot;:&quot;Solución&quot;,&quot;msgQuestion&quot;:&quot;Pregunta&quot;,&quot;msgTrue&quot;:&quot;Verdadero&quot;,&quot;msgFalse&quot;:&quot;Falso&quot;,&quot;msgOk&quot;:&quot;Correcto&quot;,&quot;msgKO&quot;:&quot;Incorrecto&quot;,&quot;msgShow&quot;:&quot;Mostrar&quot;,&quot;msgHide&quot;:&quot;Ocultar&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgReboot&quot;:&quot;¡Prueba otra vez!&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgNext&quot;:&quot;Siguiente&quot;,&quot;msgPrevious&quot;:&quot;Anterior&quot;},&quot;questionsRandom&quot;:false,&quot;percentageQuestions&quot;:100,&quot;isTest&quot;:false,&quot;time&quot;:0,&quot;questionsGame&quot;:[{&quot;question&quot;:&quot;&lt;p&gt;El umbral del LDR se puede saber de antemano, sin medirlo.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Depende de la luz del lugar. Hay que medir con una pieza clara y otra oscura y elegir un valor intermedio.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿Habría el mismo valor junto a una ventana que en una esquina?&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;Una pieza oscura hace que el valor del LDR baje.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Correcto: refleja menos luz y llega menos luz al sensor.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;Compara cuánta luz refleja una superficie blanca y una negra.&lt;/p&gt;&quot;,&quot;solution&quot;:1},{&quot;question&quot;:&quot;&lt;p&gt;Si el brazo manda todas las piezas al mismo lado, lo más probable es que un servo esté roto.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Casi siempre es el umbral mal calibrado. Si el brazo se mueve, el servo funciona.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿El brazo se mueve cuando ejecuta el ciclo?&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;Condicionales anidadas significa poner un si dentro de otro si.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Eso es. Primero compruebas si han pulsado y después de qué color es la pieza.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;Una decisión solo se evalúa cuando se cumple la anterior.&lt;/p&gt;&quot;,&quot;solution&quot;:1},{&quot;question&quot;:&quot;&lt;p&gt;Si el clasificador funcionaba y de pronto empieza a fallar, hay que rehacer el programa.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Antes de tocar el programa, comprueba si cambió la luz de la sala y recalibra.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿Un sensor calibrado por la mañana recibiría la misma luz por la tarde?&lt;/p&gt;&quot;,&quot;solution&quot;:0}],&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;repeatActivity&quot;:true,&quot;weighted&quot;:100,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;&quot;,&quot;showSlider&quot;:false,&quot;ideviceId&quot;:&quot;idevice-1785313017315-5i36ev3um&quot;}" data-idevice-template="trueorfalse.html">
+<div class="exe-trueorfalse-container">
+  
+    <div class="game-evaluation-ids js-hidden" data-id="idevice-1789892178420-a09z3t0nx" data-evaluationb="false" data-evaluationid=""></div>
+        <div class="TOFP-instructions"><p>Decide si cada afirmación sobre el LDR y la calibración es verdadera o falsa.</p></div>
+        <div class="TOFP-MainContainer" data-instance="idevice-1789892178420-a09z3t0nx" id="tofPMainContainer-idevice-1789892178420-a09z3t0nx">
+            <div class="TOFP-GameContainer" id="tofPGameContainer-idevice-1789892178420-a09z3t0nx">
+                <div class="TOFP-GameScoreBoard TOFP-EHidden">
+                    <div class="TOFP-TimeNumber">
+                        <strong><span class="sr-av">Tiempo por pregunta:</span></strong>
+                        <p id="tofPPTime-idevice-1789892178420-a09z3t0nx" class="TOFP-PTime">00:00:</p>
+                    </div>
+                </div>
+                <div class="TOFP-MessgeDiv" id="tofPMessageDiv-idevice-1789892178420-a09z3t0nx">
+                    <div class="TOFP-Message" id="tofPMessage-idevice-1789892178420-a09z3t0nx"></div>
+                </div>
+                <div class="TOFP-StartGameDiv TOFP-EHidden" id="tofPStartGameDiv-idevice-1789892178420-a09z3t0nx">
+                    <button  id="tofPStartGame-idevice-1789892178420-a09z3t0nx" type="button" class="btn btn-primary">Pulsa aquí para empezar</button>
+                </div>
+                <div class="TOFP-Multimedia " id="tofPMultimedia-idevice-1789892178420-a09z3t0nx">
+                </div>
+                <div class="TOFP-CheckTestDiv TOFP-EHidden" id="tofPCheckTestDiv-idevice-1789892178420-a09z3t0nx">
+                    <button id="tofPCheckTest-idevice-1789892178420-a09z3t0nx" type="button" class="btn btn-primary">Comprobar</button>
+                    <button id="tofRebootTest-idevice-1789892178420-a09z3t0nx" type="button" class="btn btn-primary TOFP-EHidden">¡Prueba otra vez!</button>
+                </div>
+        </div> 
+        <div class="Games-BottonContainer">
+            <div class="Games-GetScore">
+                <input id="tofPSendScore-idevice-1789892178420-a09z3t0nx" type="button" value="Guardar la puntuación" class="feedbackbutton Games-SendScore" style="display:none"/> <span class="Games-RepeatActivity"></span>
+            </div>
+        </div>
+        <div class="TOFP-After"></div>
+        <div class="questionsMedia" style="display:none"></div>
+</div>
+
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s6-movimiento-articulado.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s8-demo-y-portfolio.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

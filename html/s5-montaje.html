@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE05">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S5 · Montaje | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/scrambled-list/scrambled-list.js"></script><link rel="stylesheet" href="../idevices/scrambled-list/scrambled-list.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE05" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li class="active"> <a href="../html/s5-montaje.html" class="active no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE05" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">6</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S5 · Montaje</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE05" class="page-content">
+<article id="20260729BRAZOBLK005" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV005" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV005&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Hoy se toca</p>
+  <p>Ya tenéis las piezas impresas. Hoy se juntan con los servos y con el Arduino. Es la sesión más
+  física de toda la unidad y también en la que más cosas se pueden romper, así que id despacio.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Seguridad eléctrica · leedlo antes de empezar</p>
+  <ul>
+    <li><strong>Desconectad el USB antes de cambiar cualquier cable.</strong> Siempre. Sin excepción.</li>
+    <li>El cable <strong>rojo</strong> va a <strong>5V</strong> y el <strong>marrón</strong> a
+    <strong>GND</strong>. Si los cambiáis, el servo se calienta y se estropea.</li>
+    <li>Si algo <strong>huele raro o quema al tocarlo</strong>, desconectad el USB inmediatamente y
+    avisad.</li>
+    <li>No forcéis los servos con la mano mientras están alimentados.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 1 · Revisar las piezas</p>
+  <ol>
+    <li>Mirad si tienen <strong>rebabas</strong> (hilillos de plástico) y quitadlas con cuidado.</li>
+    <li>Probad a meter un servo en su hueco de la base. ¿Entra? Si va muy justo, lijad suavemente.
+    <strong>No lo metáis a la fuerza</strong>: rompéis la pieza.</li>
+    <li>Comprobad que la cruceta del servo encaja en el agujero del antebrazo.</li>
+  </ol>
+  <p>Si algo no encaja de ninguna manera, avisad: se puede reimprimir esa pieza suelta.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 2 · Montar los servos</p>
+  <ol>
+    <li><strong>Servo de la base</strong> (será el GDL 1): metedlo en el hueco de la base con el
+    <strong>eje mirando hacia arriba</strong>. Fijadlo con los tornillos o, si no encajan, con cinta de
+    doble cara fuerte.</li>
+    <li>Encajad el <strong>brazo</strong> sobre la cruceta de ese servo. Al girar el servo, todo el brazo
+    tiene que girar con él.</li>
+    <li><strong>Servo del antebrazo</strong> (GDL 2): metedlo en el hueco del extremo alto del brazo, con
+    el <strong>eje mirando hacia el lado</strong>.</li>
+    <li>Encajad el <strong>antebrazo</strong> en su cruceta y atornillad la <strong>paleta</strong> en la
+    punta.</li>
+  </ol>
+  <p><strong>Antes de atornillar nada definitivo:</strong> con el USB desconectado, girad cada
+  articulación a mano <em>muy suavemente</em> y comprobad que no choca contra nada en todo su recorrido.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">El truco del centrado</p>
+  <p>Antes de encajar una pieza en la cruceta de un servo, <strong>llevad el servo a 90°</strong> con el
+  programa de la sesión 2. Así, cuando montéis la pieza en su posición central, tendréis 90° de recorrido
+  a cada lado. Si la montáis con el servo en un extremo, os quedaréis sin recorrido hacia ese lado.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 3 · Cablear</p>
+  <p>Con el USB desconectado, conectad los dos servos al shield:</p>
+  <svg viewBox="0 0 660 220" role="img" aria-label="Conexión de los tres cables del servo al shield: naranja a señal, rojo a 5 voltios y marrón a masa" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="660" height="220" fill="#fdfbf9"/>
+<rect x="380" y="40" width="240" height="150" rx="9" fill="#e8f0eb" stroke="#2e8b57" stroke-width="3"/>
+<text x="500" y="68" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1f6e43">Shield HY-M302</text>
+<g font-family="sans-serif" font-size="14" fill="#123">
+<rect x="404" y="86" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="102" text-anchor="middle">7</text>
+<rect x="404" y="118" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="134" text-anchor="middle">5V</text>
+<rect x="404" y="150" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="166" text-anchor="middle">GND</text></g>
+<rect x="40" y="78" width="104" height="96" rx="7" fill="#d8e6f2" stroke="#2f568a" stroke-width="3"/>
+<text x="92" y="62" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2f568a">Servo SG90</text>
+<line x1="144" y1="97" x2="404" y2="97" stroke="#e08b1e" stroke-width="6"/>
+<line x1="144" y1="126" x2="404" y2="129" stroke="#cc2b2b" stroke-width="6"/>
+<line x1="144" y1="155" x2="404" y2="161" stroke="#6b4423" stroke-width="6"/>
+<g font-family="sans-serif" font-size="13">
+<text x="270" y="90" text-anchor="middle" fill="#b06a10">NARANJA · señal</text>
+<text x="270" y="120" text-anchor="middle" fill="#cc2b2b">ROJO · 5V</text>
+<text x="270" y="180" text-anchor="middle" fill="#6b4423">MARRÓN · GND</text></g>
+<text x="330" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">El segundo servo va igual, pero su cable naranja al pin 8</text>
+</svg>
+  <table class="tabla-datos">
+    <thead><tr><th>Servo</th><th>Naranja (señal)</th><th>Rojo</th><th>Marrón</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Base (GDL 1)</strong></td><td>pin <strong>7</strong></td><td>5V</td><td>GND</td></tr>
+      <tr><td><strong>Antebrazo (GDL 2)</strong></td><td>pin <strong>8</strong></td><td>5V</td><td>GND</td></tr>
+    </tbody>
+  </table>
+  <p>Los pines <strong>7 y 8 son los puertos libres del shield</strong>: todo lo demás (LEDs, pulsadores,
+  sensores) ya está ocupado. Lo tienes entero en la Chuleta.</p>
+  <p>Recoged los cables con una brida o un trocito de cinta para que no se enganchen al girar el brazo.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 4 · Prueba de vida</p>
+  <p>Conectad el USB y cargad este programa mínimo para comprobar que los dos servos responden. En
+  <strong>Bucle</strong>:</p>
+  <ul>
+    <li>Servo Pin <strong>7</strong> · Grados <strong>60</strong> · Retardo 700</li>
+    <li>Servo Pin <strong>8</strong> · Grados <strong>60</strong> · Retardo 700</li>
+    <li>Servo Pin <strong>7</strong> · Grados <strong>120</strong> · Retardo 700</li>
+    <li>Servo Pin <strong>8</strong> · Grados <strong>120</strong> · Retardo 700</li>
+  </ul>
+  <p><strong>Resultado esperado:</strong> el brazo gira un poco a un lado, el antebrazo sube, el brazo
+  gira al otro lado, el antebrazo baja. Sin ruidos de forcejeo.</p>
+  <p>Usamos 60° y 120° en vez de 0° y 180° a propósito: así, si alguna pieza choca, lo hace suave.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Si el servo zumba y no se mueve</p>
+  <p>Ese zumbido significa que <strong>está intentando llegar a un sitio y algo se lo impide</strong>.
+  Desconectad el USB enseguida (si sigue así se quema) y buscad el tope: una pieza que roza, un cable
+  tirante o un tornillo demasiado apretado.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong>:</p>
+  <ul>
+    <li><code>s5_montaje.jpg</code> — foto del brazo montado, entero y enfocado.</li>
+    <li><code>s5_cableado.jpg</code> — foto de cerca del shield donde se vean los cables en 7 y 8.</li>
+  </ul>
+</div>
+</div>
+</div>
+</article><article id="block-1789892178009-3vgyiorxq" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Lista desordenada</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1789892178132-7wqb20ekp" class="idevice_node scrambled-list" data-idevice-path="../idevices/scrambled-list/" data-idevice-type="scrambled-list" data-idevice-component-type="json" data-idevice-json-data="{&quot;typeGame&quot;:&quot;ScrambledList&quot;,&quot;instructions&quot;:&quot;&lt;p&gt;Ordena los pasos para montar el brazo sin dañar los servos.&lt;/p&gt;&quot;,&quot;textAfter&quot;:&quot;&quot;,&quot;afterElement&quot;:&quot;&quot;,&quot;options&quot;:[&quot;Desconectar el USB&quot;,&quot;Revisar las piezas impresas y quitar rebabas&quot;,&quot;Meter el servo de la base en su hueco&quot;,&quot;Llevar el servo a 90° antes de encajar la pieza&quot;,&quot;Encajar el brazo en la cruceta del servo&quot;,&quot;Montar el segundo servo y el antebrazo&quot;,&quot;Conectar los cables: naranja al pin, rojo a 5 V y marrón a GND&quot;,&quot;Conectar el USB y hacer la prueba de vida&quot;],&quot;time&quot;:0,&quot;buttonText&quot;:&quot;Comprobar&quot;,&quot;rightText&quot;:&quot;¡Correcto!&quot;,&quot;wrongText&quot;:&quot;Ese no es el orden. Repasa el material y prueba otra vez.&quot;,&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;repeatActivity&quot;:true,&quot;weighted&quot;:100,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;ba045cdc-0c42-4929-9f1a-60ed64d395a5&quot;,&quot;main&quot;:&quot;slidevice-1785313481782-rk7vxek4h&quot;,&quot;msgs&quot;:{&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgYouScore&quot;:&quot;Su puntuación&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgTypeGame&quot;:&quot;Lista desordenada&quot;,&quot;msgStartGame&quot;:&quot;Pulsa aquí para empezar&quot;,&quot;msgSubmit&quot;:&quot;Enviar&quot;,&quot;msgPlayStart&quot;:&quot;Pulsa aquí para jugar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgSaveScore&quot;:&quot;Guardar la puntuación&quot;,&quot;msgTestFailed&quot;:&quot;No has superado la prueba. Inténtalo de nuevo&quot;,&quot;msgRetryAttempts&quot;:&quot;Has cometido %s errores. Te quedan %s intentos. ¿Quieres intentarlo de nuevo?&quot;},&quot;scorerp&quot;:0,&quot;idevice&quot;:&quot;idevice_node&quot;,&quot;showSolutions&quot;:true,&quot;attemptsNumber&quot;:1,&quot;id&quot;:&quot;idevice-1789892178132-7wqb20ekp&quot;}" data-idevice-template="scrambled-list.html">
+<div class="exe-sortableList" id="slidevice-1789892178132-7wqb20ekp" scorm=false>
+    <div class="game-evaluation-ids js-hidden" data-id="idevice-1789892178132-7wqb20ekp" data-evaluationb="false" data-evaluationid="ba045cdc-0c42-4929-9f1a-60ed64d395a5"></div>
+    <div class="exe-sortableList-instructions"><p>Ordena los pasos para montar el brazo sin dañar los servos.</p></div>
+    <ul class="exe-sortableList-list"><li data-orig-index="0">Desconectar el USB</li>
+<li data-orig-index="1">Revisar las piezas impresas y quitar rebabas</li>
+<li data-orig-index="2">Meter el servo de la base en su hueco</li>
+<li data-orig-index="3">Llevar el servo a 90° antes de encajar la pieza</li>
+<li data-orig-index="4">Encajar el brazo en la cruceta del servo</li>
+<li data-orig-index="5">Montar el segundo servo y el antebrazo</li>
+<li data-orig-index="6">Conectar los cables: naranja al pin, rojo a 5 V y marrón a GND</li>
+<li data-orig-index="7">Conectar el USB y hacer la prueba de vida</li></ul>
+    <div style="display:none">
+        <p class="exe-sortableList-buttonText">Comprobar</p>
+        <p class="exe-sortableList-rightText">¡Correcto!</p>
+        <p class="exe-sortableList-wrongText">Ese no es el orden. Repasa el material y prueba otra vez.</p>
+    </div>
+    <div class="exe-scorm-message"></div>
+    
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s4-cierre-y-stl.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s6-movimiento-articulado.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

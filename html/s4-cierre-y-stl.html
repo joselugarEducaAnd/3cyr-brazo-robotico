@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE04">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S4 · Cierre y STL | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE04" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li class="active"> <a href="../html/s4-cierre-y-stl.html" class="active no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE04" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">5</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S4 · Cierre y STL</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE04" class="page-content">
+<article id="20260729BRAZOBLK004" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV004" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV004&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">La sesión de las comprobaciones</p>
+  <p>Hoy no se diseña: hoy se <strong>revisa</strong>. Una impresión tarda más de una hora, así que un
+  fallo que se detecta ahora ahorra una sesión entera de trabajo perdido.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Checklist antes de exportar</p>
+  <p>Repasad las cuatro piezas, una por una, con esta lista. Si alguna casilla falla, corregid ahora.</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Comprobación</th><th>Cómo se hace</th></tr></thead>
+    <tbody>
+      <tr><td>El hueco del servo es 1 mm mayor que el servo real</td><td>con la regla, sobre un servo de verdad</td></tr>
+      <tr><td>Ninguna pieza baja de 4 mm de grosor</td><td>seleccionando la pieza y mirando sus medidas</td></tr>
+      <tr><td>Los agujeros de tornillo son de 3,2 mm</td><td>seleccionando el cilindro hueco</td></tr>
+      <tr><td>Todas las piezas apoyan en el plano de trabajo</td><td>tecla <code>D</code> con la pieza seleccionada</td></tr>
+      <tr><td>Las piezas no se solapan entre sí</td><td>girando la vista y mirando desde arriba</td></tr>
+      <tr><td>Cada pieza está agrupada en un solo cuerpo</td><td>al hacer clic, se selecciona entera</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Piezas colgando en el aire</p>
+  <p>Si una parte de la pieza queda flotando sin nada debajo, la impresora tiene que imprimir soportes y
+  el resultado sale feo y frágil. Mirad cada pieza <strong>de perfil</strong>: si veis un voladizo
+  grande, apoyadlo o cambiad la orientación.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Cómo se exporta</p>
+  <ol>
+    <li>Seleccionad <strong>todas</strong> las piezas (<code>Ctrl+A</code>).</li>
+    <li>Pulsad <strong>Exportar</strong>, arriba a la derecha.</li>
+    <li>Elegid <strong>«Todo lo que hay en el diseño»</strong> y formato <strong>.STL</strong>.</li>
+    <li>Se descarga un archivo. <strong>Renombradlo a <code>brazo.stl</code></strong>, exactamente así.</li>
+  </ol>
+  <p>Si habéis modelado en varios diseños, exportad cada uno y unidlos en un solo archivo, o entregad
+  varios con los nombres <code>brazo_1.stl</code>, <code>brazo_2.stl</code>…</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>Subid el archivo a la tarea <strong>«Diseño 3D del brazo»</strong> de Google Classroom y
+  <strong>pulsad «Entregar»</strong>. Esta tarea sí se cierra hoy: necesito los archivos
+  para lanzar las impresiones.</p>
+  <ul>
+    <li><code>brazo.stl</code> — el diseño completo.</li>
+    <li><code>s4_diseno.png</code> — una captura de TinkerCAD con las piezas a la vista.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Cómo se imprimirá</p>
+  <p>Para que sepáis qué está pasando entre esta sesión y la siguiente: las piezas se imprimen en
+  <strong>PLA</strong>, con capas de <strong>0,2 mm</strong> y un relleno del <strong>20 %</strong>. Un
+  juego completo tarda alrededor de <strong>dos horas</strong>. Por eso la impresión ocurre fuera de
+  clase y en la sesión 5 ya tendréis las piezas.</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s3-diseno-3d.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s5-montaje.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

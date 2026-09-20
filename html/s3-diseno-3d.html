@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE03">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S3 · Diseño 3D | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE03" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li class="active"> <a href="../html/s3-diseno-3d.html" class="active no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE03" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">4</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S3 · Diseño 3D</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE03" class="page-content">
+<article id="20260729BRAZOBLK003" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV003" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV003&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">De la idea a la pieza</p>
+  <p>Hoy convertís el boceto de la sesión 2 en un modelo 3D real. La regla de oro del diseño para
+  imprimir es <strong>medir antes de dibujar</strong>: una pieza que queda 2 mm corta no encaja, y
+  reimprimirla cuesta más de una hora.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Las cuatro piezas</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Pieza</th><th>Qué hace</th><th>Medidas de partida</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Base</strong></td><td>apoya en la mesa y aloja el servo del giro</td><td>90 × 90 × 8 mm</td></tr>
+      <tr><td><strong>Brazo</strong></td><td>sube desde la base y sujeta el segundo servo</td><td>70 × 20 × 8 mm</td></tr>
+      <tr><td><strong>Antebrazo</strong></td><td>gira con el segundo servo</td><td>80 × 18 × 6 mm</td></tr>
+      <tr><td><strong>Paleta</strong></td><td>empuja la pieza; va fija en la punta</td><td>30 × 25 × 4 mm</td></tr>
+    </tbody>
+  </table>
+  <p>Son medidas <strong>de partida</strong>: cambiadlas si vuestro boceto pide otra cosa. Lo que no se
+  puede cambiar es el hueco del servo, que depende del servo real.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Medid el servo de verdad</p>
+  <p>Antes de hacer ningún hueco, coged un servo y una regla y medid <strong>su cuerpo</strong> (largo,
+  ancho y alto) y la <strong>separación entre los dos agujeros de las pestañas</strong>. Apuntadlo.
+  Después haced el hueco <strong>1 mm más grande</strong> que la medida real en cada dirección: la
+  impresión nunca sale exacta y sin ese margen el servo no entra.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Práctica guiada · La base con su hueco</p>
+  <p>Empezad por la pieza más fácil, que además os enseña el patrón que usaréis en todas las demás.</p>
+  <ol>
+    <li>Entrad en <a href="https://www.tinkercad.com/joinclass" target="_blank" rel="noopener">tinkercad.com/joinclass</a>
+    con el código de clase y cread un diseño nuevo. Renombradlo <code>brazo_base</code>.</li>
+    <li>Arrastrad un <strong>Cubo</strong> y ponedle <strong>90 × 90 × 8 mm</strong>. Esta es la base.</li>
+    <li>Arrastrad otro <strong>Cubo</strong> con las medidas del servo <em>más 1 mm</em> en cada
+    dirección (por ejemplo 24 × 13 × 24 mm). Cambiadlo a <strong>Hueco</strong> en el panel de la
+    derecha.</li>
+    <li>Colocad el hueco donde vaya el servo y usad <strong>Alinear</strong> (tecla <code>L</code>) para
+    centrarlo en X e Y.</li>
+    <li>Seleccionad las dos formas y pulsad <strong>Agrupar</strong> (<code>Ctrl+G</code>). El cubo hueco
+    perfora la base.</li>
+    <li>Activad la <strong>Regla</strong> en una esquina y comprobad que la base sigue midiendo
+    90 × 90 mm.</li>
+  </ol>
+  <p><strong>Resultado esperado:</strong> una placa cuadrada con un rectángulo vaciado, del tamaño justo
+  para que el servo entre a presión.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · Las otras tres piezas</p>
+  <p>Con el mismo patrón (<em>forma sólida + forma hueca + Alinear + Agrupar</em>), modelad el brazo, el
+  antebrazo y la paleta.</p>
+  <p>Cosas que no se os pueden olvidar:</p>
+  <ul>
+    <li>El <strong>brazo</strong> necesita un hueco para el segundo servo, en su extremo de arriba.</li>
+    <li>El <strong>antebrazo</strong> necesita un agujero pequeño donde encajar la
+    <strong>cruceta blanca</strong> del servo (la pieza de plástico que viene en la bolsa). Medidla:
+    suele rondar los 6 mm.</li>
+    <li>Todas las piezas llevan <strong>agujeros de 3,2 mm</strong> donde vayan tornillos.</li>
+    <li>Ninguna pieza baja de <strong>4 mm de grosor</strong>: por debajo se parten.</li>
+  </ul>
+  <p>Podéis modelarlas en un único diseño (separadas, sin tocarse) o en diseños distintos. Lo que os
+  resulte más cómodo.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Si acabas antes</p>
+  <p>Redondead las esquinas de las piezas con cilindros, o poned el nombre del equipo en relieve en la
+  base (panel <em>Letras y símbolos</em>). Queda mucho mejor y no cuesta nada de imprimir.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p><strong>Hoy no se entrega nada todavía.</strong> El archivo va en la sesión 4, cuando el diseño esté
+  cerrado. Lo que sí tenéis que hacer antes de salir es <strong>guardar el diseño en TinkerCAD</strong>
+  (se guarda solo, pero comprobadlo).</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s2-refresco-servos-y-3d.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s4-cierre-y-stl.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-index">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="libs/jquery/jquery.min.js"> </script><script src="libs/common_i18n.js"> </script><script src="libs/common.js"> </script><script src="libs/exe_export.js"> </script><script src="libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+<script src="idevices/text/text.js"></script><link rel="stylesheet" href="idevices/text/text.css">
+<link rel="stylesheet" href="content/css/base.css"><script src="theme/style.js"> </script><link rel="stylesheet" href="theme/style.css"><link rel="stylesheet" href="theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE00" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li class="active"> <a href="index.html" class="active main-node no-ch">Inicio</a>
+</li>
+<li> <a href="html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li> <a href="html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE00" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">1</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">Inicio</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE00" class="page-content">
+<article id="20260729BRAZOBLK000" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV000" class="idevice_node text" data-idevice-path="idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV000&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Vas a construir un robot de verdad</p>
+  <p>En esta unidad vas a diseñar, fabricar y programar un <strong>brazo robótico articulado</strong>:
+  una máquina que gira sobre su base, levanta y baja el antebrazo y <strong>separa piezas claras de
+  piezas oscuras</strong> ella sola. Es, en pequeño, lo mismo que hacen los brazos que trabajan en las
+  líneas de montaje de las fábricas.</p>
+  <p>Es el <strong>proyecto final del curso</strong>: aquí se juntan la programación por bloques, la
+  electrónica de Arduino, los sensores y el diseño 3D que ya has trabajado antes.</p>
+</div>
+
+<svg viewBox="0 0 700 300" role="img" aria-label="Brazo robótico con sus dos grados de libertad: giro de la base y elevación del antebrazo" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="700" height="300" fill="#fdfbf9"/>
+<rect x="250" y="240" width="200" height="26" rx="6" fill="#d8cdc4" stroke="#8a4b2a" stroke-width="2"/>
+<text x="350" y="285" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">Base fija atornillada a la mesa</text>
+<circle cx="350" cy="240" r="30" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/>
+<text x="350" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#8a4b2a">GDL 1</text>
+<path d="M 292 240 A 58 58 0 0 1 408 240" fill="none" stroke="#2f568a" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="350" y="192" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2f568a">giro de la base (eje vertical)</text>
+<line x1="350" y1="240" x2="470" y2="140" stroke="#66371e" stroke-width="14" stroke-linecap="round"/>
+<circle cx="470" cy="140" r="22" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/>
+<text x="470" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#8a4b2a">GDL 2</text>
+<line x1="470" y1="140" x2="600" y2="170" stroke="#66371e" stroke-width="11" stroke-linecap="round"/>
+<rect x="596" y="158" width="34" height="26" rx="4" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
+<text x="613" y="205" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2f568a">paleta</text>
+<path d="M 520 92 A 70 70 0 0 1 545 178" fill="none" stroke="#2e8b57" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="580" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e8b57">elevación (eje horizontal)</text>
+<text x="140" y="60" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#8a4b2a">2 grados</text>
+<text x="140" y="84" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#8a4b2a">de libertad</text>
+<text x="140" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">= 2 movimientos</text>
+<text x="140" y="138" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">independientes</text>
+<text x="140" y="158" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">= 2 servomotores</text>
+</svg>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Cómo vamos a trabajar</p>
+  <p>Trabajaréis en <strong>equipos de 2 o 3 personas</strong> con tres papeles que os podéis repartir e
+  ir rotando: quien <strong>programa</strong>, quien <strong>diseña en 3D</strong> y quien
+  <strong>monta</strong>. Da igual el papel que te toque: al final <em>todo el equipo tiene que saber
+  explicar el robot entero</em>.</p>
+  <p>Cada sesión es independiente: empieza con una idea, sigue con una <strong>práctica guiada</strong>
+  y termina con una <strong>tarea</strong> que hacéis vosotros. Si os atascáis, al final de la unidad
+  tenéis la <strong>Chuleta</strong> con el mapa del shield, los bloques y los problemas más comunes.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Lo que vais a usar</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Herramienta</th><th>Para qué</th><th>Cómo se entra</th></tr></thead>
+    <tbody>
+      <tr><td><strong>STEAMakersBlocks</strong></td><td>programar el brazo por bloques</td><td>con vuestro usuario de clase</td></tr>
+      <tr><td><strong>TinkerCAD</strong></td><td>diseñar las piezas en 3D</td><td>con el código de clase, en <code>tinkercad.com/joinclass</code></td></tr>
+      <tr><td><strong>Arduino UNO + shield HY-M302</strong></td><td>el cerebro y los sensores</td><td>en el aula</td></tr>
+      <tr><td><strong>2 servomotores SG90</strong></td><td>las dos articulaciones</td><td>en el aula</td></tr>
+      <tr><td><strong>Impresora 3D</strong></td><td>fabricar las piezas</td><td>la uso yo</td></tr>
+    </tbody>
+  </table>
+  <p>Las dos herramientas funcionan <strong>en el navegador</strong>: no hay que instalar nada y podéis
+  seguir trabajando desde casa.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué vais a entregar</p>
+  <p>Todo se entrega en <strong>Google Classroom</strong>. Hay <strong>cuatro tareas</strong> y cada una
+  recoge una cosa distinta:</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Tarea de Classroom</th><th>Qué recoge</th><th>Cuándo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ficha de robótica industrial</strong></td><td>formulario de la sesión 1</td><td>S1</td></tr>
+      <tr><td><strong>Diseño 3D del brazo</strong></td><td>el archivo <code>brazo.stl</code></td><td>S3–S4</td></tr>
+      <tr><td><strong>Reto: brazo robótico</strong></td><td>capturas, fotos y vídeos de S2, S5, S6 y S7</td><td>S2 a S7</td></tr>
+      <tr><td><strong>Portfolio y exposición</strong></td><td>el portfolio digital del equipo</td><td>S8</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Ojo con la tarea «Reto: brazo robótico»:</strong> vais subiendo archivos a lo largo de
+  varias sesiones, así que <strong>no pulséis «Entregar» hasta la sesión 7</strong>. Si lo pulsáis antes,
+  no podréis añadir lo que falta.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Nombres de los archivos</p>
+  <p>Cada tarea os dice el <strong>nombre exacto</strong> que debe tener el archivo. Usadlo tal cual y
+  <strong>sin vuestro nombre ni apellidos</strong>: la corrección es ciega y los archivos con datos
+  personales hay que devolverlos.</p>
+  <p>En los <strong>vídeos</strong> se ve un papelito escrito a mano con vuestras
+  <strong>iniciales y el curso</strong> (por ejemplo <code>J.L.G. · 3.º</code>). Sirve para saber que el
+  vídeo es vuestro sin poner el nombre completo.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Buenas prácticas (se registran)</p>
+  <p>A lo largo de la unidad se anota si cuidáis el material, si dejáis el puesto recogido, si trabajáis
+  con seguridad al manipular la electrónica y si respetáis los plazos. <strong>Estas anotaciones no
+  forman parte de la nota de los criterios</strong>: sirven para acompañaros y para poder
+  daros información concreta sobre cómo estáis trabajando.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Créditos y licencia</p>
+  <p>Material del Departamento de Tecnología del IES El Majuelo, con licencia
+  <strong>Creative Commons BY-SA 4.0</strong>. Adapta la guía «RoboMover» del propio departamento y el
+  curso «Sistemas de control automáticos con Arduino + Shield HY-M302» de Pedro Ruiz Fernández, ambos
+  con la misma licencia.</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<span class="nav-button nav-button-left" aria-hidden="true"><span>Anterior</span></span>
+<a href="html/s1-robotica-industrial.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

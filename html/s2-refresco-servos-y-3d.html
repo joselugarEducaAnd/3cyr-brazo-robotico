@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE02">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S2 · Refresco: servos y 3D | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/trueorfalse/trueorfalse.js"></script><link rel="stylesheet" href="../idevices/trueorfalse/trueorfalse.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE02" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li class="active"> <a href="../html/s2-refresco-servos-y-3d.html" class="active no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+</li>
+<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+</li>
+<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+</li>
+<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE02" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">3</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S2 · Refresco: servos y 3D</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE02" class="page-content">
+<article id="20260729BRAZOBLK002" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV002" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV002&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Hoy recuperas dos cosas que ya sabes</p>
+  <p>Esta sesión no trae nada nuevo: recupera el <strong>servomotor</strong> de la unidad de Arduino y el
+  <strong>modelado en TinkerCAD</strong>. Son las dos piernas sobre las que se sostiene el resto del
+  proyecto, así que merece la pena dedicarles una sesión entera antes de meterse en harina.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Parte 1 · El servomotor, en dos minutos</p>
+  <p>Un <strong>servomotor</strong> no es un motor normal. A un motor normal le das corriente y gira sin
+  parar. A un servo le pides un <strong>ángulo</strong> y él se coloca ahí y se queda.</p>
+  <ul>
+    <li>El recorrido va de <strong>0° a 180°</strong>. El centro es <strong>90°</strong>.</li>
+    <li>Le puedes pedir cualquier ángulo intermedio: 45°, 137°, lo que necesites.</li>
+    <li>Si le pides un ángulo al que ya está, no se mueve. Si le pides uno nuevo, gira hasta él.</li>
+  </ul>
+  <p>Por eso los servos son perfectos para <strong>articulaciones</strong>: una articulación de rotación
+  es exactamente «ponte a tantos grados».</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">No fuerces el servo con la mano</p>
+  <p>Cuando el servo está alimentado, <strong>no lo gires tirando del brazo</strong>: estás peleando
+  contra su engranaje y se rompe. Si necesitas colocarlo a mano, desconecta primero el USB.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">El bloque que lo mueve</p>
+  <p>En STEAMakersBlocks el servo se mueve con un único bloque, que está en la categoría
+  <strong>Motor › Servo</strong>:</p>
+  <svg viewBox="0 0 620 84" role="img" aria-label="Bloque Servo de STEAMakersBlocks con los campos Pin, Grados y Retardo" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="620" height="84" fill="#fdfbf9"/>
+<rect x="14" y="16" width="500" height="52" rx="7" fill="#4a9ad4" stroke="#2f6f9e" stroke-width="2"/>
+<text x="34" y="48" font-family="sans-serif" font-size="17" font-weight="bold" fill="#fff">Servo</text>
+<text x="100" y="48" font-family="sans-serif" font-size="14" fill="#fff">Pin</text>
+<rect x="130" y="30" width="52" height="26" rx="4" fill="#fff" stroke="#2f6f9e"/>
+<text x="156" y="48" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">7 ▾</text>
+<text x="200" y="48" font-family="sans-serif" font-size="14" fill="#fff">Grados</text>
+<rect x="262" y="30" width="86" height="26" rx="13" fill="#7ec46a" stroke="#4f8a3f"/>
+<text x="305" y="48" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#123">Ángulo 90°</text>
+<text x="362" y="48" font-family="sans-serif" font-size="14" fill="#fff">Retardo (ms)</text>
+<rect x="452" y="30" width="46" height="26" rx="13" fill="#7ec46a" stroke="#4f8a3f"/>
+<text x="475" y="48" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#123">500</text>
+<text x="530" y="44" font-family="sans-serif" font-size="12" fill="#8a4b2a">categoría</text>
+<text x="530" y="60" font-family="sans-serif" font-size="12" font-weight="bold" fill="#8a4b2a">Motor › Servo</text>
+</svg>
+  <p>Tiene tres campos:</p>
+  <ul>
+    <li><strong>Pin:</strong> a qué pin está conectado el cable naranja del servo.</li>
+    <li><strong>Grados:</strong> el ángulo que quieres. Le encaja el bloque <strong>Ángulo</strong> (que
+    está en <em>Matemáticas</em>), un número, o una variable.</li>
+    <li><strong>Retardo (ms):</strong> cuánto espera el programa después de dar la orden. Sirve para
+    darle tiempo al servo a llegar. Con <strong>500</strong> vas bien.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Aquí no hay «conectar el servo» en Inicializar</p>
+  <p>Si has visto tutoriales por ahí, verás que en muchos hay que «enganchar» el servo al principio del
+  programa. <strong>En STEAMakersBlocks no</strong>: el pin va dentro del propio bloque
+  <strong>Servo</strong>, y con eso basta. Tu <strong>Inicializar</strong> puede quedarse vacío.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Práctica guiada · Que el servo salude</p>
+  <p>Vamos a hacer que un servo vaya y venga entre 0° y 180°.</p>
+  <ol>
+    <li>Coge <strong>un</strong> servo y conéctalo al shield: cable <strong>naranja al pin 7</strong>,
+    <strong>rojo a 5V</strong>, <strong>marrón a GND</strong>. (Con el USB desconectado.)</li>
+    <li>Conecta el USB. Entra en STEAMakersBlocks con tu usuario de clase y crea un
+    proyecto nuevo de tipo <strong>UNO</strong> llamado exactamente <code>S2 servo</code>.</li>
+    <li>Dentro de <strong>Bucle</strong>, encaja esta secuencia de cuatro bloques
+    <strong>Motor › Servo</strong>, todos con <strong>Pin 7</strong> y <strong>Retardo 500</strong>:
+      <ul>
+        <li>Servo Pin 7 · Grados <strong>0</strong> · Retardo 500</li>
+        <li>Servo Pin 7 · Grados <strong>90</strong> · Retardo 500</li>
+        <li>Servo Pin 7 · Grados <strong>180</strong> · Retardo 500</li>
+        <li>Servo Pin 7 · Grados <strong>90</strong> · Retardo 500</li>
+      </ul>
+    </li>
+    <li>Sube el programa a la placa.</li>
+  </ol>
+  <p><strong>Resultado esperado:</strong> el eje del servo va a un extremo, al centro, al otro extremo y
+  vuelve al centro, una y otra vez. Si pones un trocito de cartón en el eje lo verás mucho mejor.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Si no se mueve</p>
+  <ul>
+    <li>¿El cable <strong>naranja</strong> está en el pin 7, y no en otro?</li>
+    <li>¿El rojo en 5V y el marrón en GND? Si están cambiados, el servo se calienta: desconecta ya.</li>
+    <li>¿Has subido el programa, o solo lo has escrito?</li>
+    <li>¿El shield está bien encajado sobre el Arduino, sin ningún pin torcido?</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Parte 2 · Refresco de TinkerCAD</p>
+  <p>Para volver a coger soltura con el modelado 3D vas a rehacer el <strong>reto del llavero</strong>:
+  una placa con tu inicial en relieve y un agujero pasante. En una sola pieza repasas las cuatro
+  destrezas que necesitarás en la sesión 3:</p>
+  <ul>
+    <li>Mover, girar y escalar formas.</li>
+    <li>Unir varias formas con <strong>Agrupar</strong>.</li>
+    <li>Hacer agujeros con el modo <strong>Hueco</strong>.</li>
+    <li><strong>Alinear</strong> y medir con la <strong>Regla</strong>.</li>
+  </ul>
+  <p>Tienes los pasos detallados en la ficha de refresco.</p>
+  <p>Para entrar en TinkerCAD, ve a
+  <a href="https://www.tinkercad.com/joinclass" target="_blank" rel="noopener">tinkercad.com/joinclass</a>
+  y escribe el <strong>código de clase</strong>. No hace falta ninguna cuenta.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Parte 3 · El boceto del brazo</p>
+  <p>Antes de modelar nada, el equipo dibuja <strong>a mano, en papel</strong>, cómo va a ser su brazo.
+  Un boceto no es un dibujo bonito: es una herramienta para no perder tiempo después.</p>
+  <p>Vuestro boceto tiene que tener:</p>
+  <ul>
+    <li>Las <strong>cuatro piezas</strong>: base, brazo, antebrazo y paleta.</li>
+    <li><strong>Dónde va cada servo</strong> y hacia dónde mira su eje.</li>
+    <li><strong>Medidas en milímetros</strong> de cada pieza. No hace falta que sean perfectas, pero sí
+    que sean realistas: medid el servo con una regla antes de escribirlas.</li>
+    <li>Una flecha por cada articulación, indicando en qué sentido gira.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>Todo esto va a la tarea <strong>«Reto: brazo robótico»</strong> de Google Classroom.
+  <strong>Adjunta los archivos pero NO pulses «Entregar»</strong>: esa tarea sigue abierta hasta la
+  sesión 7.</p>
+  <ul>
+    <li><code>s2_servo.png</code> — captura de los bloques de la práctica guiada.</li>
+    <li><code>s2_boceto.jpg</code> — foto del boceto en papel, bien enfocada y con las medidas legibles.</li>
+  </ul>
+  <p>Recuerda: los nombres de archivo van tal cual, <strong>sin vuestros nombres</strong>.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Si acabas antes</p>
+  <p>Haz que el servo se mueva <strong>suavemente</strong> en vez de a saltos: en lugar de ir de 0° a
+  180° de golpe, usa el bloque <strong>contar</strong> (categoría <em>Control</em>) para recorrer los
+  ángulos de 5 en 5, con un retardo pequeño. Compara los dos movimientos: ¿cuál se parece más al de un
+  robot de verdad?</p>
+</div>
+</div>
+</div>
+</article><article id="block-1789892178328-ipehgz9zr" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Verdadero o falso</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1789892177776-8vk39d8in" class="idevice_node trueorfalse" data-idevice-path="../idevices/trueorfalse/" data-idevice-type="trueorfalse" data-idevice-component-type="json" data-idevice-json-data="{&quot;id&quot;:&quot;idevice-1789892177776-8vk39d8in&quot;,&quot;typeGame&quot;:&quot;TrueOrFalse&quot;,&quot;eXeGameInstructions&quot;:&quot;&lt;p&gt;Decide si cada afirmación sobre los servomotores es verdadera o falsa.&lt;/p&gt;&quot;,&quot;eXeIdeviceTextAfter&quot;:&quot;&quot;,&quot;msgs&quot;:{&quot;msgStartGame&quot;:&quot;Pulsa aquí para empezar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgNoImage&quot;:&quot;Pregunta sin imágenes&quot;,&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgEndGameScore&quot;:&quot;Comience la partida antes de guardar la puntuación.&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgYouScore&quot;:&quot;Su puntuación&quot;,&quot;msgAuthor&quot;:&quot;Autoría&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgTypeGame&quot;:&quot;Verdadero o falso&quot;,&quot;msgFeedback&quot;:&quot;Retroalimentación&quot;,&quot;msgSuggestion&quot;:&quot;Sugerencia&quot;,&quot;msgSolution&quot;:&quot;Solución&quot;,&quot;msgQuestion&quot;:&quot;Pregunta&quot;,&quot;msgTrue&quot;:&quot;Verdadero&quot;,&quot;msgFalse&quot;:&quot;Falso&quot;,&quot;msgOk&quot;:&quot;Correcto&quot;,&quot;msgKO&quot;:&quot;Incorrecto&quot;,&quot;msgShow&quot;:&quot;Mostrar&quot;,&quot;msgHide&quot;:&quot;Ocultar&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgReboot&quot;:&quot;¡Prueba otra vez!&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgNext&quot;:&quot;Siguiente&quot;,&quot;msgPrevious&quot;:&quot;Anterior&quot;},&quot;questionsRandom&quot;:false,&quot;percentageQuestions&quot;:100,&quot;isTest&quot;:false,&quot;time&quot;:0,&quot;questionsGame&quot;:[{&quot;question&quot;:&quot;&lt;p&gt;Un servomotor gira sin parar mientras esté alimentado.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Eso es un motor normal. A un servo le pides un ángulo y se coloca ahí.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;Piensa en qué le mandas: ¿una velocidad o una posición?&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;El recorrido de vuestros servos va de 0° a 180°, y el centro es 90°.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Correcto. Conviene montar las piezas con el servo en 90° para dejar recorrido a ambos lados.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿Qué ángulo queda a la misma distancia de 0° y 180°?&lt;/p&gt;&quot;,&quot;solution&quot;:1},{&quot;question&quot;:&quot;&lt;p&gt;Hay que enganchar el servo en Inicializar antes de poder moverlo.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;En STEAMakersBlocks el pin va dentro del propio bloque Servo, así que Inicializar puede quedarse vacío.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;Mira los campos que tiene el bloque Servo.&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;Si el servo zumba pero no gira, lo mejor es esperar a ver si se destraba.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Ese zumbido indica que está forzando contra un tope. Desconecta el USB enseguida y busca qué se lo impide.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿Qué está intentando hacer el motor mientras zumba?&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;Se puede girar el brazo con la mano mientras el servo está alimentado.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Estarías forzando su engranaje interno. Si necesitas colocarlo a mano, desconecta primero el USB.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;¿El engranaje está libre mientras recibe corriente?&lt;/p&gt;&quot;,&quot;solution&quot;:0},{&quot;question&quot;:&quot;&lt;p&gt;Los dos servos del brazo van a los pines 7 y 8 porque son los puertos libres del shield.&lt;/p&gt;&quot;,&quot;feedback&quot;:&quot;&lt;p&gt;Exacto. El resto de pines del shield ya está ocupado por sus LEDs, pulsadores y sensores.&lt;/p&gt;&quot;,&quot;suggestion&quot;:&quot;&lt;p&gt;Consulta el mapa completo de la Chuleta.&lt;/p&gt;&quot;,&quot;solution&quot;:1}],&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;repeatActivity&quot;:true,&quot;weighted&quot;:100,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;&quot;,&quot;showSlider&quot;:false,&quot;ideviceId&quot;:&quot;idevice-1785313017315-5i36ev3um&quot;}" data-idevice-template="trueorfalse.html">
+<div class="exe-trueorfalse-container">
+  
+    <div class="game-evaluation-ids js-hidden" data-id="idevice-1789892177776-8vk39d8in" data-evaluationb="false" data-evaluationid=""></div>
+        <div class="TOFP-instructions"><p>Decide si cada afirmación sobre los servomotores es verdadera o falsa.</p></div>
+        <div class="TOFP-MainContainer" data-instance="idevice-1789892177776-8vk39d8in" id="tofPMainContainer-idevice-1789892177776-8vk39d8in">
+            <div class="TOFP-GameContainer" id="tofPGameContainer-idevice-1789892177776-8vk39d8in">
+                <div class="TOFP-GameScoreBoard TOFP-EHidden">
+                    <div class="TOFP-TimeNumber">
+                        <strong><span class="sr-av">Tiempo por pregunta:</span></strong>
+                        <p id="tofPPTime-idevice-1789892177776-8vk39d8in" class="TOFP-PTime">00:00:</p>
+                    </div>
+                </div>
+                <div class="TOFP-MessgeDiv" id="tofPMessageDiv-idevice-1789892177776-8vk39d8in">
+                    <div class="TOFP-Message" id="tofPMessage-idevice-1789892177776-8vk39d8in"></div>
+                </div>
+                <div class="TOFP-StartGameDiv TOFP-EHidden" id="tofPStartGameDiv-idevice-1789892177776-8vk39d8in">
+                    <button  id="tofPStartGame-idevice-1789892177776-8vk39d8in" type="button" class="btn btn-primary">Pulsa aquí para empezar</button>
+                </div>
+                <div class="TOFP-Multimedia " id="tofPMultimedia-idevice-1789892177776-8vk39d8in">
+                </div>
+                <div class="TOFP-CheckTestDiv TOFP-EHidden" id="tofPCheckTestDiv-idevice-1789892177776-8vk39d8in">
+                    <button id="tofPCheckTest-idevice-1789892177776-8vk39d8in" type="button" class="btn btn-primary">Comprobar</button>
+                    <button id="tofRebootTest-idevice-1789892177776-8vk39d8in" type="button" class="btn btn-primary TOFP-EHidden">¡Prueba otra vez!</button>
+                </div>
+        </div> 
+        <div class="Games-BottonContainer">
+            <div class="Games-GetScore">
+                <input id="tofPSendScore-idevice-1789892177776-8vk39d8in" type="button" value="Guardar la puntuación" class="feedbackbutton Games-SendScore" style="display:none"/> <span class="Games-RepeatActivity"></span>
+            </div>
+        </div>
+        <div class="TOFP-After"></div>
+        <div class="questionsMedia" style="display:none"></div>
+</div>
+
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s1-robotica-industrial.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s3-diseno-3d.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>
