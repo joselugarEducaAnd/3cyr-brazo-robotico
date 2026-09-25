@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE13">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S11 · Prueba y error II | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE13" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
+</li>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
+</li>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
+</li>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li class="active"> <a href="../html/s11-prueba-y-error-ii.html" class="active no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE13" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">12</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S11 · Prueba y error II</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE13" class="page-content">
+<article id="20260729BRAZOBLK013" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV013" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV013&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Funcionar una vez no es funcionar</p>
+  <p>Que el brazo clasifique bien una pieza es un buen comienzo. Pero un robot de una fábrica tiene que
+  acertar con la pieza número mil igual que con la primera. Eso se llama <strong>fiabilidad</strong>, y
+  solo se consigue probando muchas veces seguidas y corrigiendo lo que falla.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">La prueba de las diez piezas</p>
+  <ol>
+    <li>Preparad <strong>diez piezas</strong>, mezclando claras y oscuras sin ningún orden.</li>
+    <li>Marcad con cinta en la mesa el sitio exacto donde se coloca la pieza, para ponerlas siempre igual.</li>
+    <li>Pasad las diez, una tras otra, y apuntad cuántas ha clasificado bien.</li>
+    <li>Si ha fallado alguna, buscad la causa con el método de la sesión 9, cambiad <strong>una sola
+    cosa</strong> y repetid la serie completa.</li>
+  </ol>
+  <p><strong>El objetivo:</strong> una serie de diez sin ningún fallo.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Dónde suele estar el fallo</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Lo que pasa</th><th>Qué ajustar</th></tr></thead>
+    <tbody>
+      <tr><td>Falla sobre todo con las piezas de un color</td><td><strong>recalibrad</strong> el umbral con la luz que hay hoy en el aula, como en la sesión 6</td></tr>
+      <tr><td>Empuja la pieza antes de que la base haya llegado</td><td>subid el <strong>retardo</strong> del bloque Servo de la base</td></tr>
+      <tr><td>Hace el ciclo dos veces con una sola pulsación</td><td>añadid un <code>Esperar</code> al final del ciclo</td></tr>
+      <tr><td>La paleta no toca la pieza, o la tira fuera de la bandeja</td><td>ajustad los <strong>ángulos</strong> del antebrazo y de la base</td></tr>
+      <tr><td>Con la misma pieza, unas veces acierta y otras no</td><td>colocad la pieza siempre en la marca, a la misma distancia del sensor</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · Registro y portfolio</p>
+  <p>Anotad cada serie en la sección <strong>«Pruebas»</strong> del portfolio: cuántas piezas de diez
+  acertó, qué cambiasteis y cuántas acertó después.</p>
+  <p>Con el brazo ya fiable, adelantad las secciones del portfolio que ya podéis escribir:
+  <strong>ficha técnica</strong>, <strong>diseño 3D</strong>, <strong>montaje</strong> y
+  <strong>programa</strong>. La reflexión individual y el reparto del trabajo se cierran en la sesión 12.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · El vídeo del ciclo</p>
+  <p>Cuando lo tengáis, grabad un vídeo de <strong>30 a 60 segundos</strong> con el brazo clasificando
+  <strong>al menos cuatro piezas seguidas</strong>, claras y oscuras, para que se vea que decide. Con el
+  <strong>papelito de iniciales y curso</strong>.</p>
+  <p>Este vídeo es también vuestro plan B para la demo de la sesión 12.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>. <strong>Hoy sí: cuando lo tengáis todo subido,
+  pulsad «Entregar»</strong>. Esta tarea se cierra hoy.</p>
+  <ul>
+    <li><code>brazo_ciclo.mp4</code> — el vídeo del ciclo.</li>
+    <li><code>brazo_ciclo_bloques.png</code> — si habéis cambiado el programa desde la sesión 10, quitad
+    la captura antigua y subid la nueva con el mismo nombre.</li>
+  </ul>
+  <p>Antes de entregar, comprobad que están todos:</p>
+  <ul>
+    <li><code>brazo_servo.png</code> y <code>brazo_boceto.jpg</code> (sesión 2)</li>
+    <li><code>brazo_movimiento_bloques.png</code> y <code>brazo_movimiento.mp4</code> (sesión 5)</li>
+    <li><code>brazo_umbral.txt</code> (sesión 6)</li>
+    <li><code>brazo_montaje.jpg</code> (sesión 7)</li>
+    <li><code>brazo_cableado.jpg</code> y <code>brazo_articulado.mp4</code> (sesión 8)</li>
+    <li><code>brazo_ciclo_bloques.png</code> y <code>brazo_ciclo.mp4</code> (sesiones 10 y 11)</li>
+  </ul>
+  <p>El portfolio <strong>no</strong> se entrega hoy: sigue abierto hasta la sesión 12.</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s10-ciclo-de-clasificacion.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s12-demo-y-portfolio.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

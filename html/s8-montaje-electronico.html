@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" id="exe-20260729BRAZOPAGE05">
+<html lang="es" id="exe-20260729BRAZOPAGE11">
 <head>
 <meta charset="utf-8">
 <meta name="generator" content="eXeLearning v4.0.5">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S5 · Montaje | Misión ingeniería: construye tu brazo robótico</title>
+<title>S8 · Montaje electrónico | Misión ingeniería: construye tu brazo robótico</title>
 <link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
 <meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
@@ -14,7 +14,7 @@
 </head>
 <body class="exe-export exe-web-site">
 <script>document.body.className+=" js"</script>
-<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE05" id="skipNav">Skip to content</a> <nav id="siteNav">
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE11" id="skipNav">Skip to content</a> <nav id="siteNav">
 <ul>
 <li> <a href="../index.html" class="main-node no-ch">Inicio</a>
 </li>
@@ -26,34 +26,43 @@
 </li>
 <li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
 </li>
-<li class="active"> <a href="../html/s5-montaje.html" class="active no-ch">S5 · Montaje</a>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
 </li>
-<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
 </li>
-<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
 </li>
-<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+<li class="active"> <a href="../html/s8-montaje-electronico.html" class="active no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
 </li>
 <li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
 </li>
 </ul>
-</nav><main id="20260729BRAZOPAGE05" class="page"> 
-<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">6</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+</nav><main id="20260729BRAZOPAGE11" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">9</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
 
 <div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
-<div class="page-header"><h1 class="page-title">S5 · Montaje</h1></div>
-</header><div id="page-content-20260729BRAZOPAGE05" class="page-content">
-<article id="20260729BRAZOBLK005" class="box no-header">
+<div class="page-header"><h1 class="page-title">S8 · Montaje electrónico</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE11" class="page-content">
+<article id="20260729BRAZOBLK011" class="box no-header">
 <header class="box-head no-icon">
 <button class="box-toggle box-toggle-on" title="Toggle content">
 <span>Toggle content</span>
 </button></header>
 <div class="box-content">
-<div id="20260729BRAZOIDEV005" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV005&quot;}">
+<div id="20260729BRAZOIDEV011" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV011&quot;}">
 <style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
-  <p class="bloque-titulo">Hoy se toca</p>
-  <p>Ya tenéis las piezas impresas. Hoy se juntan con los servos y con el Arduino. Es la sesión más
-  física de toda la unidad y también en la que más cosas se pueden romper, así que id despacio.</p>
+  <p class="bloque-titulo">Del esqueleto al robot</p>
+  <p>El brazo ya tiene su estructura. Hoy le ponéis el cerebro y los nervios: el <strong>Arduino con el
+  shield</strong> y los <strong>cables</strong>. Y al final de la sesión, el programa que escribisteis en el
+  banco de pruebas moverá por fin el brazo de verdad.</p>
 </div>
 
 <div class="bloque bloque-nota">
@@ -69,43 +78,10 @@
 </div>
 
 <div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Paso 1 · Revisar las piezas</p>
-  <ol>
-    <li>Mirad si tienen <strong>rebabas</strong> (hilillos de plástico) y quitadlas con cuidado.</li>
-    <li>Probad a meter un servo en su hueco de la base. ¿Entra? Si va muy justo, lijad suavemente.
-    <strong>No lo metáis a la fuerza</strong>: rompéis la pieza.</li>
-    <li>Comprobad que la cruceta del servo encaja en el agujero del antebrazo.</li>
-  </ol>
-  <p>Si algo no encaja de ninguna manera, avisad: se puede reimprimir esa pieza suelta.</p>
-</div>
-
-<div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Paso 2 · Montar los servos</p>
-  <ol>
-    <li><strong>Servo de la base</strong> (será el GDL 1): metedlo en el hueco de la base con el
-    <strong>eje mirando hacia arriba</strong>. Fijadlo con los tornillos o, si no encajan, con cinta de
-    doble cara fuerte.</li>
-    <li>Encajad el <strong>brazo</strong> sobre la cruceta de ese servo. Al girar el servo, todo el brazo
-    tiene que girar con él.</li>
-    <li><strong>Servo del antebrazo</strong> (GDL 2): metedlo en el hueco del extremo alto del brazo, con
-    el <strong>eje mirando hacia el lado</strong>.</li>
-    <li>Encajad el <strong>antebrazo</strong> en su cruceta y atornillad la <strong>paleta</strong> en la
-    punta.</li>
-  </ol>
-  <p><strong>Antes de atornillar nada definitivo:</strong> con el USB desconectado, girad cada
-  articulación a mano <em>muy suavemente</em> y comprobad que no choca contra nada en todo su recorrido.</p>
-</div>
-
-<div class="bloque bloque-nota">
-  <p class="bloque-titulo">El truco del centrado</p>
-  <p>Antes de encajar una pieza en la cruceta de un servo, <strong>llevad el servo a 90°</strong> con el
-  programa de la sesión 2. Así, cuando montéis la pieza en su posición central, tendréis 90° de recorrido
-  a cada lado. Si la montáis con el servo en un extremo, os quedaréis sin recorrido hacia ese lado.</p>
-</div>
-
-<div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Paso 3 · Cablear</p>
-  <p>Con el USB desconectado, conectad los dos servos al shield:</p>
+  <p class="bloque-titulo">Paso 1 · Colocar el Arduino y cablear</p>
+  <p>Fijad el Arduino con el shield sobre la base (con tornillos o con cinta de doble cara), con el
+  conector USB hacia fuera para poder enchufarlo. Después, con el USB desconectado, conectad los dos
+  servos al shield:</p>
   <svg viewBox="0 0 660 220" role="img" aria-label="Conexión de los tres cables del servo al shield: naranja a señal, rojo a 5 voltios y marrón a masa" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="660" height="220" fill="#fdfbf9"/>
 <rect x="380" y="40" width="240" height="150" rx="9" fill="#e8f0eb" stroke="#2e8b57" stroke-width="3"/>
@@ -138,7 +114,7 @@
 </div>
 
 <div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Paso 4 · Prueba de vida</p>
+  <p class="bloque-titulo">Paso 2 · Prueba de vida</p>
   <p>Conectad el USB y cargad este programa mínimo para comprobar que los dos servos responden. En
   <strong>Bucle</strong>:</p>
   <ul>
@@ -159,12 +135,30 @@
   tirante o un tornillo demasiado apretado.</p>
 </div>
 
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 3 · Vuestro programa, ahora en el brazo</p>
+  <ol>
+    <li>Abrid el proyecto <code>brazo movimiento</code> de la sesión 5 y subidlo a la placa.</li>
+    <li>Moved cada mando <strong>muy despacio</strong> y mirad el brazo: ¿en qué ángulo empieza a rozar o
+    a chocar?</li>
+    <li>Apuntad los límites reales de cada articulación y dejad <strong>10° de margen</strong> antes de
+    cada tope.</li>
+    <li>Cambiad en el programa los ángulos de los pulsadores y el <code>mapear … a 30 150</code> por
+    vuestros límites.</li>
+  </ol>
+  <p><strong>Resultado esperado:</strong> la base gira con los pulsadores y el antebrazo sube y baja con el
+  potenciómetro, sin chocar en ningún punto del recorrido.</p>
+  <p>Guardad esos ángulos: os harán falta en la sesión 10 y en el portfolio.</p>
+</div>
+
 <div class="bloque bloque-actividad">
   <p class="bloque-titulo">Qué se entrega hoy</p>
   <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong>:</p>
   <ul>
-    <li><code>s5_montaje.jpg</code> — foto del brazo montado, entero y enfocado.</li>
-    <li><code>s5_cableado.jpg</code> — foto de cerca del shield donde se vean los cables en 7 y 8.</li>
+    <li><code>brazo_cableado.jpg</code> — foto de cerca del shield donde se vean los cables en 7 y 8.</li>
+    <li><code>brazo_articulado.mp4</code> — vídeo de unos 30 segundos con el brazo montado: la base gira
+    con los pulsadores y el antebrazo sube y baja con el potenciómetro, sin chocar en ningún punto. Con el
+    <strong>papelito de iniciales y curso</strong>.</li>
   </ul>
 </div>
 </div>
@@ -200,8 +194,8 @@
 </div>
 </article>
 </div></main><div class="nav-buttons">
-<a href="../html/s4-cierre-y-stl.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
-<a href="../html/s6-movimiento-articulado.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+<a href="../html/s7-montaje-mecanico.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s9-prueba-y-error-i.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
 </div>
 <footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
 </div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE05">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S7 · Montaje mecánico | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE05" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
+</li>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
+</li>
+<li class="active"> <a href="../html/s7-montaje-mecanico.html" class="active no-ch">S7 · Montaje mecánico</a>
+</li>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE05" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">8</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S7 · Montaje mecánico</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE05" class="page-content">
+<article id="20260729BRAZOBLK005" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV005" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV005&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Hoy se toca</p>
+  <p>Ya tenéis las piezas impresas. Hoy se juntan con los servos: solo la <strong>mecánica</strong>. El
+  Arduino y los cables llegan en la sesión 8. Es una sesión muy física y en la que más cosas se pueden
+  romper, así que id despacio.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Seguridad eléctrica · leedlo antes de empezar</p>
+  <ul>
+    <li><strong>Desconectad el USB antes de cambiar cualquier cable.</strong> Siempre. Sin excepción.</li>
+    <li>El cable <strong>rojo</strong> va a <strong>5V</strong> y el <strong>marrón</strong> a
+    <strong>GND</strong>. Si los cambiáis, el servo se calienta y se estropea.</li>
+    <li>Si algo <strong>huele raro o quema al tocarlo</strong>, desconectad el USB inmediatamente y
+    avisad.</li>
+    <li>No forcéis los servos con la mano mientras están alimentados.</li>
+  </ul>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 1 · Revisar las piezas</p>
+  <ol>
+    <li>Mirad si tienen <strong>rebabas</strong> (hilillos de plástico) y quitadlas con cuidado.</li>
+    <li>Probad a meter un servo en su hueco de la base. ¿Entra? Si va muy justo, lijad suavemente.
+    <strong>No lo metáis a la fuerza</strong>: rompéis la pieza.</li>
+    <li>Comprobad que la cruceta del servo encaja en el agujero del antebrazo.</li>
+  </ol>
+  <p>Si algo no encaja de ninguna manera, apuntadlo y avisad: la sesión 9 está pensada para ajustar y,
+  si hace falta, reimprimir piezas sueltas.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Paso 2 · Montar los servos</p>
+  <ol>
+    <li><strong>Servo de la base</strong> (será el GDL 1): metedlo en el hueco de la base con el
+    <strong>eje mirando hacia arriba</strong>. Fijadlo con los tornillos o, si no encajan, con cinta de
+    doble cara fuerte.</li>
+    <li>Encajad el <strong>brazo</strong> sobre la cruceta de ese servo. Al girar el servo, todo el brazo
+    tiene que girar con él.</li>
+    <li><strong>Servo del antebrazo</strong> (GDL 2): metedlo en el hueco del extremo alto del brazo, con
+    el <strong>eje mirando hacia el lado</strong>.</li>
+    <li>Encajad el <strong>antebrazo</strong> en su cruceta y atornillad la <strong>paleta</strong> en la
+    punta.</li>
+  </ol>
+  <p><strong>Antes de atornillar nada definitivo:</strong> con el USB desconectado, girad cada
+  articulación a mano <em>muy suavemente</em> y comprobad que no choca contra nada en todo su recorrido.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">El truco del centrado</p>
+  <p>Antes de encajar una pieza en la cruceta de un servo, <strong>llevad el servo a 90°</strong> con el
+  programa <code>brazo servo</code> de la sesión 2, dejando un solo bloque Servo a 90°. Así, cuando montéis la pieza en su posición central, tendréis 90° de recorrido
+  a cada lado. Si la montáis con el servo en un extremo, os quedaréis sin recorrido hacia ese lado.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong>:</p>
+  <ul>
+    <li><code>brazo_montaje.jpg</code> — foto del brazo montado, entero y enfocado.</li>
+  </ul>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s6-calibracion-del-sensor.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s8-montaje-electronico.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

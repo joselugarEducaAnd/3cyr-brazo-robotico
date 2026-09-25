@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="eXeLearning v4.0.5">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S7 · Sensores y ciclo | Misión ingeniería: construye tu brazo robótico</title>
+<title>S10 · Ciclo de clasificación | Misión ingeniería: construye tu brazo robótico</title>
 <link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
 <meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
@@ -26,22 +26,30 @@
 </li>
 <li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
 </li>
-<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
 </li>
-<li> <a href="../html/s6-movimiento-articulado.html" class="no-ch">S6 · Movimiento articulado</a>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
 </li>
-<li class="active"> <a href="../html/s7-sensores-y-ciclo.html" class="active no-ch">S7 · Sensores y ciclo</a>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
 </li>
-<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li class="active"> <a href="../html/s10-ciclo-de-clasificacion.html" class="active no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
 </li>
 <li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
 </li>
 </ul>
 </nav><main id="20260729BRAZOPAGE07" class="page"> 
-<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">8</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">11</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
 
 <div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
-<div class="page-header"><h1 class="page-title">S7 · Sensores y ciclo</h1></div>
+<div class="page-header"><h1 class="page-title">S10 · Ciclo de clasificación</h1></div>
 </header><div id="page-content-20260729BRAZOPAGE07" class="page-content">
 <article id="20260729BRAZOBLK007" class="box no-header">
 <header class="box-head no-icon">
@@ -55,36 +63,8 @@
   <p>Hasta ahora el brazo hacía lo que vosotros le mandabais con los pulsadores. Hoy dais el paso que
   convierte una máquina teledirigida en un <strong>robot de verdad</strong>: que <em>mire</em> la pieza
   y <em>decida</em> él a qué bandeja llevarla.</p>
-</div>
-
-<div class="bloque bloque-teoria">
-  <p class="bloque-titulo">El sensor de luz (LDR)</p>
-  <p>El shield lleva un <strong>LDR</strong> en el pin <strong>A1</strong>. Es una resistencia que cambia
-  según la luz que recibe, así que sirve para saber si lo que tiene delante es claro u oscuro:</p>
-  <ul>
-    <li>Pieza <strong>clara</strong> → refleja mucha luz → el valor sube.</li>
-    <li>Pieza <strong>oscura</strong> → refleja poca luz → el valor baja.</li>
-  </ul>
-  <p>Se lee con <code>Leer analógica Pin A1</code> y da un número de 0 a 1023.</p>
-</div>
-
-<div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Práctica guiada · Calibrar el umbral</p>
-  <p>El valor que separa «claro» de «oscuro» <strong>no se puede saber de antemano</strong>: depende de
-  la luz que haya en el sitio donde esté vuestro brazo. Hay que medirlo. Esto se llama
-  <strong>calibrar</strong> y es lo que se hace con cualquier sensor real.</p>
-  <ol>
-    <li>Programa: en <strong>Bucle</strong>, <em>escribir en el puerto serie</em>
-    <code>Leer analógica Pin A1</code>, y debajo <code>Esperar 300 milisegundos</code>.
-    (El bloque del puerto serie está en <em>Comunicaciones › Puerto serie</em>.)</li>
-    <li>Subid el programa y abrid el <strong>monitor serie</strong>.</li>
-    <li>Poned una <strong>pieza clara</strong> bajo el sensor. Apuntad el valor: ______</li>
-    <li>Poned una <strong>pieza oscura</strong>. Apuntad el valor: ______</li>
-    <li>Vuestro <strong>umbral</strong> es el punto medio entre los dos. Por ejemplo, si sale 700 y 300,
-    el umbral es <strong>500</strong>.</li>
-  </ol>
-  <p><strong>Si los dos valores salen casi iguales</strong>, el sensor no distingue las piezas: acercadlo
-  más, o usad piezas con más contraste (blanca y negra, no dos grises).</p>
+  <p>Ya tenéis todas las piezas del puzle: un brazo que se mueve sin chocar (sesiones 8 y 9) y un sensor
+  calibrado con su umbral (sesión 6). Hoy se juntan.</p>
 </div>
 
 <div class="bloque bloque-teoria">
@@ -127,14 +107,14 @@
 
 <div class="bloque bloque-actividad">
   <p class="bloque-titulo">Tarea · El clasificador</p>
-  <p>Cread un proyecto <strong>UNO</strong> llamado <code>S7 clasificador</code> y programad el ciclo
-  entero.</p>
+  <p>Cread un proyecto <strong>UNO</strong> llamado <code>brazo clasificador</code> y programad el ciclo
+  entero. Podéis partir del condicional del proyecto <code>brazo sensor</code>.</p>
   <p>La estructura, en palabras:</p>
   <ol>
     <li><strong>Si</strong> <code>Leer digital Pin 2</code> es ON (han puesto una pieza y pulsan):
       <ol>
         <li>Leer <code>Leer analógica Pin A1</code> y guardarlo en una variable <code>luz</code>.</li>
-        <li><strong>Si</strong> <code>luz</code> &lt; vuestro umbral → base (pin 7) a <strong>45°</strong>.</li>
+        <li><strong>Si</strong> <code>luz</code> &lt; vuestro umbral (el de la sesión 6) → base (pin 7) a <strong>45°</strong>.</li>
         <li><strong>Si no</strong> → base (pin 7) a <strong>135°</strong>.</li>
         <li>Bajar el antebrazo (pin 8), esperar, subirlo.</li>
         <li>Volver la base a <strong>90°</strong>.</li>
@@ -168,16 +148,12 @@
 
 <div class="bloque bloque-actividad">
   <p class="bloque-titulo">Qué se entrega hoy</p>
-  <p>A la tarea <strong>«Reto: brazo robótico»</strong>. <strong>Hoy sí: cuando lo tengáis todo subido,
-  pulsad «Entregar»</strong>. Esta tarea se cierra hoy.</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong> todavía:</p>
   <ul>
-    <li><code>s7_bloques.png</code> — captura del programa del clasificador.</li>
-    <li><code>s7_ciclo.mp4</code> — vídeo de unos 30 segundos con <strong>al menos dos piezas
-    distintas</strong>, para que se vea que decide. Con el <strong>papelito de iniciales y curso</strong>.</li>
-    <li><code>s7_umbral.txt</code> — un archivo de texto de tres líneas: el valor con pieza clara, el
-    valor con pieza oscura y el umbral que habéis elegido.</li>
+    <li><code>brazo_ciclo_bloques.png</code> — captura del programa del clasificador tal como lo tengáis
+    al acabar la sesión.</li>
   </ul>
-  <p>Comprobad que están también los archivos de las sesiones 2, 5 y 6 antes de entregar.</p>
+  <p>El vídeo del ciclo se graba en la sesión 11, cuando el clasificador sea fiable.</p>
 </div>
 </div>
 </div>
@@ -227,8 +203,8 @@
 </div>
 </article>
 </div></main><div class="nav-buttons">
-<a href="../html/s6-movimiento-articulado.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
-<a href="../html/s8-demo-y-portfolio.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+<a href="../html/s9-prueba-y-error-i.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s11-prueba-y-error-ii.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
 </div>
 <footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
 </div>

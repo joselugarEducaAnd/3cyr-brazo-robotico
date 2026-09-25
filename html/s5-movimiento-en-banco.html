@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="eXeLearning v4.0.5">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S6 · Movimiento articulado | Misión ingeniería: construye tu brazo robótico</title>
+<title>S5 · Movimiento en banco | Misión ingeniería: construye tu brazo robótico</title>
 <link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
 <meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
@@ -26,22 +26,30 @@
 </li>
 <li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
 </li>
-<li> <a href="../html/s5-montaje.html" class="no-ch">S5 · Montaje</a>
+<li class="active"> <a href="../html/s5-movimiento-en-banco.html" class="active no-ch">S5 · Movimiento en banco</a>
 </li>
-<li class="active"> <a href="../html/s6-movimiento-articulado.html" class="active no-ch">S6 · Movimiento articulado</a>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
 </li>
-<li> <a href="../html/s7-sensores-y-ciclo.html" class="no-ch">S7 · Sensores y ciclo</a>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
 </li>
-<li> <a href="../html/s8-demo-y-portfolio.html" class="no-ch">S8 · Demo y portfolio</a>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
 </li>
 <li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
 </li>
 </ul>
 </nav><main id="20260729BRAZOPAGE06" class="page"> 
-<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">7</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">10</strong></span></p>
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">6</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
 
 <div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
-<div class="page-header"><h1 class="page-title">S6 · Movimiento articulado</h1></div>
+<div class="page-header"><h1 class="page-title">S5 · Movimiento en banco</h1></div>
 </header><div id="page-content-20260729BRAZOPAGE06" class="page-content">
 <article id="20260729BRAZOBLK006" class="box no-header">
 <header class="box-head no-icon">
@@ -51,10 +59,27 @@
 <div class="box-content">
 <div id="20260729BRAZOIDEV006" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV006&quot;}">
 <style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
-  <p class="bloque-titulo">De mover un servo a mandar un robot</p>
-  <p>Ya sabéis mover un servo. Hoy vais a <strong>mandar los dos a la vez y a voluntad</strong>: con los
-  pulsadores del shield primero, y con el potenciómetro después. Al terminar la sesión el brazo hará lo
-  que le pidáis.</p>
+  <p class="bloque-titulo">Programar mientras se imprime</p>
+  <p>Vuestras piezas están en la impresora, pero eso no os para: el programa que moverá el brazo se
+  puede escribir y probar <strong>con los dos servos sueltos sobre la mesa</strong>. Es lo que se llama
+  trabajar <strong>en banco de pruebas</strong>, y es lo que hacen los ingenieros para no esperar a tener
+  la máquina montada.</p>
+  <p>Hoy vais a <strong>mandar los dos servos a la vez y a voluntad</strong>: con los pulsadores del shield
+  primero, y con el potenciómetro después. Cuando montéis el brazo, este mismo programa lo moverá.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Montad el banco de pruebas</p>
+  <ol>
+    <li>Con el USB <strong>desconectado</strong>, conectad los dos servos al shield: el de la
+    <strong>base</strong> al pin <strong>7</strong> y el del <strong>antebrazo</strong> al pin
+    <strong>8</strong>. En los dos, naranja a la señal, rojo a 5V y marrón a GND.</li>
+    <li>Poned a cada servo una etiqueta de cinta con su nombre, <strong>BASE</strong> y
+    <strong>ANTEBRAZO</strong>: así no los confundiréis al montar.</li>
+    <li>Encajad en cada eje una cruceta blanca, o pegad un trocito de cartón: así se ve bien hacia dónde
+    apunta.</li>
+    <li>Sujetad los servos a la mesa con cinta para que no salten al moverse.</li>
+  </ol>
 </div>
 
 <div class="bloque bloque-teoria">
@@ -72,10 +97,10 @@
 </div>
 
 <div class="bloque bloque-resuelto">
-  <p class="bloque-titulo">Práctica guiada 1 · El brazo obedece a los pulsadores</p>
+  <p class="bloque-titulo">Práctica guiada 1 · La base obedece a los pulsadores</p>
   <p>Objetivo: SW1 lleva la base a la izquierda, SW2 a la derecha y, si no tocáis nada, se queda en el
   centro.</p>
-  <p>Cread un proyecto <strong>UNO</strong> llamado <code>S6 brazo</code>. En <strong>Bucle</strong>:</p>
+  <p>Cread un proyecto <strong>UNO</strong> llamado <code>brazo movimiento</code>. En <strong>Bucle</strong>:</p>
   <ol>
     <li>Un bloque <strong>si … si no … si no</strong> (categoría <em>Control</em>; se amplía con la
     ruedecita del bloque).</li>
@@ -85,10 +110,10 @@
     Servo Pin 7 · Grados <strong>135</strong> · Retardo 100</li>
     <li><strong>Si no</strong> → Servo Pin 7 · Grados <strong>90</strong> · Retardo 100</li>
   </ol>
-  <p><strong>Resultado esperado:</strong> mantenéis SW1 y el brazo se va a un lado; lo soltáis y vuelve al
-  centro; con SW2 se va al otro.</p>
+  <p><strong>Resultado esperado:</strong> mantenéis SW1 y el servo de la base gira a un lado; lo
+  soltáis y vuelve al centro; con SW2 gira al otro.</p>
   <p>Fijaos en que el retardo aquí es <strong>pequeño</strong> (100 ms): el programa tiene que volver a
-  leer los pulsadores enseguida para que el brazo responda al momento.</p>
+  leer los pulsadores enseguida para que el servo responda al momento.</p>
 </div>
 
 <div class="bloque bloque-resuelto">
@@ -107,15 +132,18 @@
     <code>mapear (Leer analógica Pin A0) de 0 1023 a 0 180</code>.</li>
     <li>Debajo: Servo Pin <strong>8</strong> · Grados <code>angulo</code> · Retardo <strong>50</strong>.</li>
   </ol>
-  <p><strong>Resultado esperado:</strong> giráis la ruedecita despacio y el antebrazo sube y baja
+  <p><strong>Resultado esperado:</strong> giráis la ruedecita despacio y el servo del antebrazo gira
   siguiéndola. Si va a tirones, subid un poco el retardo.</p>
 </div>
 
 <div class="bloque bloque-nota">
   <p class="bloque-titulo">Cuidado con los topes</p>
-  <p>Con el potenciómetro es fácil mandar al servo a 0° o a 180° y que la pieza choque. Si os pasa,
-  cambiad el bloque a <code>mapear … a 30 150</code>: así el brazo nunca sale de su zona segura. Esto es
-  exactamente lo que en un robot industrial se llama <strong>limitar el volumen de trabajo</strong>.</p>
+  <p>Ahora los servos están sueltos y pueden ir de 0° a 180° sin problema, pero dentro del brazo las
+  piezas chocarán en los extremos. Dejad el programa preparado desde hoy: cambiad el bloque a
+  <code>mapear … a 30 150</code> y usad también ángulos entre 30° y 150° con los pulsadores. Así el brazo
+  nunca saldrá de su zona segura. Esto es exactamente lo que en un robot industrial se llama
+  <strong>limitar el volumen de trabajo</strong>. En la sesión 8 ajustaréis estos límites a vuestro brazo
+  real.</p>
 </div>
 
 <div class="bloque bloque-actividad">
@@ -127,9 +155,8 @@
     <li>Los dos funcionen <strong>a la vez</strong>: podéis girar la base mientras subís el antebrazo.</li>
   </ul>
   <p><strong>Mínimo para dar la tarea por hecha:</strong> los dos servos se mueven, cada uno con su
-  mando, sin que el brazo choque contra nada.</p>
-  <p><strong>Si queréis ir más allá:</strong> haced que el LED rojo (pin 12) se encienda mientras el
-  brazo se está moviendo, o que la base se mueva <em>suavemente</em> hacia el ángulo pedido en vez de
+  mando, sin salir de los límites de 30° a 150°.</p>
+  <p><strong>Si queréis ir más allá:</strong> haced que el LED rojo (pin 12) se encienda mientras un servo se está moviendo, o que la base se mueva <em>suavemente</em> hacia el ángulo pedido en vez de
   saltar de golpe.</p>
 </div>
 
@@ -137,10 +164,12 @@
   <p class="bloque-titulo">Qué se entrega hoy</p>
   <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong>:</p>
   <ul>
-    <li><code>s6_bloques.png</code> — captura de vuestro programa completo.</li>
-    <li><code>s6_movimiento.mp4</code> — vídeo de unos 30 segundos moviendo el brazo con los dos mandos.
-    Que se vea el <strong>papelito con las iniciales y el curso</strong>.</li>
+    <li><code>brazo_movimiento_bloques.png</code> — captura de vuestro programa completo.</li>
+    <li><code>brazo_movimiento.mp4</code> — vídeo de unos 30 segundos moviendo los dos servos con sus
+    mandos. Que se vea el <strong>papelito con las iniciales y el curso</strong>.</li>
   </ul>
+  <p>Y guardad bien el proyecto <code>brazo movimiento</code>: en la sesión 8 lo cargaréis en el brazo ya
+  montado.</p>
 </div>
 </div>
 </div>
@@ -157,8 +186,8 @@
 </div>
 </article>
 </div></main><div class="nav-buttons">
-<a href="../html/s5-montaje.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
-<a href="../html/s7-sensores-y-ciclo.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+<a href="../html/s4-cierre-y-stl.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s6-calibracion-del-sensor.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
 </div>
 <footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
 </div>

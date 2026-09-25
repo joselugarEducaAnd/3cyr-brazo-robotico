@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE12">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S9 · Prueba y error I | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE12" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
+</li>
+<li> <a href="../html/s6-calibracion-del-sensor.html" class="no-ch">S6 · Calibración del sensor</a>
+</li>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
+</li>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li class="active"> <a href="../html/s9-prueba-y-error-i.html" class="active no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE12" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">10</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S9 · Prueba y error I</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE12" class="page-content">
+<article id="20260729BRAZOBLK012" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV012" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV012&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Ningún prototipo sale bien a la primera</p>
+  <p>Vuestro brazo se mueve, pero seguro que algo no va del todo fino: una pieza que baila, un servo que
+  se sale de su hueco, un choque en un extremo. Es normal. En ingeniería, la primera versión de una
+  máquina se llama <strong>prototipo</strong> precisamente porque está hecha para probarla, encontrarle
+  los fallos y mejorarla.</p>
+  <p>Hoy no se añade nada nuevo: hoy se <strong>arregla</strong>. Y se hace con método.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">El método de prueba y error</p>
+  <ol>
+    <li><strong>Probad</strong> el brazo haciendo todo su recorrido, varias veces.</li>
+    <li><strong>Observad</strong> qué falla exactamente, y dónde.</li>
+    <li><strong>Anotad</strong> el problema antes de tocar nada.</li>
+    <li><strong>Cambiad una sola cosa.</strong></li>
+    <li><strong>Volved a probar.</strong> Si ha mejorado, pasad al siguiente problema; si no, deshaced el
+    cambio y probad otra idea.</li>
+  </ol>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">Una cosa cada vez</p>
+  <p>Si cambiáis tres cosas a la vez y el brazo mejora, no sabréis cuál de las tres lo ha arreglado. Y si
+  empeora, tampoco sabréis cuál deshacer.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Problemas típicos y por dónde empezar</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Lo que pasa</th><th>Qué probar</th></tr></thead>
+    <tbody>
+      <tr><td>El antebrazo baila en la cruceta</td><td>apretar el tornillo de la cruceta; si el agujero quedó grande, una tira de cinta; si no basta, reimprimir el antebrazo con el agujero más justo</td></tr>
+      <tr><td>El servo se mueve dentro de su hueco</td><td>cinta de doble cara o una cuña; si el hueco es demasiado grande, reimprimir la pieza</td></tr>
+      <tr><td>La base tiembla o vuelca al girar</td><td>sujetarla a la mesa, añadirle peso o hacerla más ancha</td></tr>
+      <tr><td>La paleta no llega a la pieza, o roza la mesa</td><td>ajustar el ángulo del antebrazo; si no basta, alargar o acortar el antebrazo</td></tr>
+      <tr><td>Los cables se enganchan al girar</td><td>recogerlos con una brida dejando una curva de holgura</td></tr>
+      <tr><td>Una pieza se ha partido</td><td>reimprimirla más gruesa (nunca por debajo de 4 mm)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Si hay que reimprimir una pieza</p>
+  <ol>
+    <li>Abrid vuestro diseño en TinkerCAD y corregid <strong>solo esa pieza</strong>.</li>
+    <li>Pasadle el checklist de la sesión 4.</li>
+    <li>Exportadla <strong>sola</strong> en formato .STL y renombrad el archivo a
+    <code>brazo_reimpresion.stl</code> (si son varias piezas: <code>brazo_reimpresion_1.stl</code>,
+    <code>brazo_reimpresion_2.stl</code>…).</li>
+    <li>Subidlo a la tarea <strong>«Reto: brazo robótico»</strong>, sin pulsar «Entregar», y avisadme en
+    clase para meter la pieza en la cola de la impresora.</li>
+  </ol>
+  <p>Una pieza suelta tarda mucho menos que el juego entero. Mientras se imprime, seguid con lo que no
+  dependa de ella.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · El registro de pruebas</p>
+  <p>Todo lo que probéis hoy va al <strong>portfolio del equipo</strong>, en la sección
+  <strong>«Pruebas»</strong>. Una fila por cada problema:</p>
+  <table class="tabla-datos">
+    <thead><tr><th>Qué pasaba</th><th>Qué cambiamos</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>El antebrazo bailaba en la cruceta</td><td>apretamos el tornillo y pusimos una tira de cinta</td><td>ya no baila</td></tr>
+    </tbody>
+  </table>
+  <p>El portfolio está en la tarea <strong>«Portfolio y exposición»</strong> de Google Classroom. Id
+  rellenándolo, pero <strong>no pulséis «Entregar»</strong> hasta la sesión 12.</p>
+  <p><strong>Mínimo para dar la sesión por buena:</strong> el brazo hace el recorrido completo de sus dos
+  articulaciones sin chocar, sin que nada baile y sin que ningún cable tire.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>Hoy no hay archivo nuevo para la tarea «Reto: brazo robótico», salvo <code>brazo_reimpresion.stl</code>
+  si necesitáis reimprimir alguna pieza. Lo que sí avanza es la sección «Pruebas» del portfolio.</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s8-montaje-electronico.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s10-ciclo-de-clasificacion.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

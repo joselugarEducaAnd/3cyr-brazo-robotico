@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-20260729BRAZOPAGE10">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S6 · Calibración del sensor | Misión ingeniería: construye tu brazo robótico</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Unidad de robótica industrial para 3.º de ESO (Computación y Robótica). Grados de libertad, articulaciones y configuraciones morfológicas, y construcción de un brazo robótico articulado de 2 GDL con Arduino, servomotores y diseño 3D.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#20260729BRAZOPAGE10" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Inicio</a>
+</li>
+<li> <a href="../html/s1-robotica-industrial.html" class="no-ch">S1 · Robótica industrial</a>
+</li>
+<li> <a href="../html/s2-refresco-servos-y-3d.html" class="no-ch">S2 · Refresco: servos y 3D</a>
+</li>
+<li> <a href="../html/s3-diseno-3d.html" class="no-ch">S3 · Diseño 3D</a>
+</li>
+<li> <a href="../html/s4-cierre-y-stl.html" class="no-ch">S4 · Cierre y STL</a>
+</li>
+<li> <a href="../html/s5-movimiento-en-banco.html" class="no-ch">S5 · Movimiento en banco</a>
+</li>
+<li class="active"> <a href="../html/s6-calibracion-del-sensor.html" class="active no-ch">S6 · Calibración del sensor</a>
+</li>
+<li> <a href="../html/s7-montaje-mecanico.html" class="no-ch">S7 · Montaje mecánico</a>
+</li>
+<li> <a href="../html/s8-montaje-electronico.html" class="no-ch">S8 · Montaje electrónico</a>
+</li>
+<li> <a href="../html/s9-prueba-y-error-i.html" class="no-ch">S9 · Prueba y error I</a>
+</li>
+<li> <a href="../html/s10-ciclo-de-clasificacion.html" class="no-ch">S10 · Ciclo de clasificación</a>
+</li>
+<li> <a href="../html/s11-prueba-y-error-ii.html" class="no-ch">S11 · Prueba y error II</a>
+</li>
+<li> <a href="../html/s12-demo-y-portfolio.html" class="no-ch">S12 · Demo y portfolio</a>
+</li>
+<li> <a href="../html/chuleta.html" class="no-ch">Chuleta</a>
+</li>
+</ul>
+</nav><main id="20260729BRAZOPAGE10" class="page"> 
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">7</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">14</strong></span></p>
+
+<div class="package-header"><p class="package-title">Misión ingeniería: construye tu brazo robótico</p></div>
+<div class="page-header"><h1 class="page-title">S6 · Calibración del sensor</h1></div>
+</header><div id="page-content-20260729BRAZOPAGE10" class="page-content">
+<article id="20260729BRAZOBLK010" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260729BRAZOIDEV010" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260729BRAZOIDEV010&quot;}">
+<style>.exe-content{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;}</style><div class="bloque bloque-teoria">
+  <p class="bloque-titulo">Enseñar al robot a ver</p>
+  <p>La impresora sigue trabajando, así que hoy seguís en el banco de pruebas. Vais a preparar el sentido
+  que convertirá vuestro brazo en un <strong>robot de verdad</strong>: que <em>mire</em> la pieza y sepa si
+  es clara u oscura. Para eso hay que medir, y a medir un sensor para poder fiarse de él se le llama
+  <strong>calibrar</strong>.</p>
+</div>
+
+<div class="bloque bloque-teoria">
+  <p class="bloque-titulo">El sensor de luz (LDR)</p>
+  <p>El shield lleva un <strong>LDR</strong> en el pin <strong>A1</strong>. Es una resistencia que cambia
+  según la luz que recibe, así que sirve para saber si lo que tiene delante es claro u oscuro:</p>
+  <ul>
+    <li>Pieza <strong>clara</strong> → refleja mucha luz → el valor sube.</li>
+    <li>Pieza <strong>oscura</strong> → refleja poca luz → el valor baja.</li>
+  </ul>
+  <p>Se lee con <code>Leer analógica Pin A1</code> y da un número de 0 a 1023.</p>
+</div>
+
+<div class="bloque bloque-resuelto">
+  <p class="bloque-titulo">Práctica guiada · Calibrar el umbral</p>
+  <p>El valor que separa «claro» de «oscuro» <strong>no se puede saber de antemano</strong>: depende de
+  la luz que haya en el sitio donde esté vuestro brazo. Hay que medirlo. Esto se llama
+  <strong>calibrar</strong> y es lo que se hace con cualquier sensor real.</p>
+  <ol>
+    <li>Cread un proyecto <strong>UNO</strong> llamado <code>brazo sensor</code>. En <strong>Bucle</strong>, <em>escribir en el puerto serie</em>
+    <code>Leer analógica Pin A1</code>, y debajo <code>Esperar 300 milisegundos</code>.
+    (El bloque del puerto serie está en <em>Comunicaciones › Puerto serie</em>.)</li>
+    <li>Subid el programa y abrid el <strong>monitor serie</strong>.</li>
+    <li>Poned una <strong>pieza clara</strong> bajo el sensor. Apuntad el valor: ______</li>
+    <li>Poned una <strong>pieza oscura</strong>. Apuntad el valor: ______</li>
+    <li>Vuestro <strong>umbral</strong> es el punto medio entre los dos. Por ejemplo, si sale 700 y 300,
+    el umbral es <strong>500</strong>.</li>
+  </ol>
+  <p><strong>Si los dos valores salen casi iguales</strong>, el sensor no distingue las piezas: acercadlo
+  más, o usad piezas con más contraste (blanca y negra, no dos grises).</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · Una tabla de lecturas, no una sola</p>
+  <p>Una sola medida engaña: la luz cambia si alguien se pone delante o si se nubla. Haced la medida bien:</p>
+  <ol>
+    <li>Tomad <strong>tres lecturas</strong> con la pieza clara y <strong>tres</strong> con la oscura,
+    moviendo un poco la pieza cada vez.</li>
+    <li>Quedaos con la <strong>más baja de las claras</strong> y la <strong>más alta de las
+    oscuras</strong>: son los casos más difíciles.</li>
+    <li>Vuestro umbral es el punto medio entre esos dos valores.</li>
+  </ol>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Tarea · El sensor avisa</p>
+  <p>Ahora que conocéis vuestro umbral, que el Arduino lo use para decidir. Añadid al proyecto
+  <code>brazo sensor</code>, dentro de <strong>Bucle</strong>:</p>
+  <ul>
+    <li><strong>Si</strong> <code>Leer analógica Pin A1</code> &lt; vuestro umbral → pieza
+    <strong>oscura</strong>: encended el <strong>LED rojo (pin 12)</strong> y apagad el azul.</li>
+    <li><strong>Si no</strong> → pieza <strong>clara</strong>: encended el <strong>LED azul (pin 13)</strong>
+    y apagad el rojo.</li>
+  </ul>
+  <p><strong>Mínimo para dar la tarea por hecha:</strong> al cambiar la pieza delante del sensor, cambia el
+  LED que se enciende.</p>
+  <p><strong>Si queréis ir más allá:</strong> que el <strong>zumbador (pin 5)</strong> dé un pitido corto
+  cuando la pieza sea oscura.</p>
+  <p>Este condicional será el corazón del clasificador en la sesión 10: guardad el proyecto.</p>
+</div>
+
+<div class="bloque bloque-nota">
+  <p class="bloque-titulo">El umbral no es para siempre</p>
+  <p>Con el brazo ya montado, en otra mesa o un día con otra luz, el umbral puede cambiar. No pasa nada:
+  ya sabéis medirlo. En la sesión 11 lo volveréis a comprobar.</p>
+</div>
+
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Qué se entrega hoy</p>
+  <p>A la tarea <strong>«Reto: brazo robótico»</strong>, <strong>sin pulsar «Entregar»</strong>:</p>
+  <ul>
+    <li><code>brazo_umbral.txt</code> — un archivo de texto de tres líneas: el valor con pieza clara, el
+    valor con pieza oscura y el umbral que habéis elegido.</li>
+  </ul>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/s5-movimiento-en-banco.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/s7-montaje-mecanico.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class=""> <p> <span class="license-label">Licencia: </span><span class="license">creative commons: attribution - share alike</span></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>
