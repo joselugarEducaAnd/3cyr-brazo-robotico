@@ -70,34 +70,40 @@
 <div class="bloque bloque-teoria">
   <p class="bloque-titulo">El ciclo completo</p>
   <p>Un <strong>ciclo</strong> es la secuencia que el robot repite con cada pieza. El vuestro es este:</p>
-  <svg viewBox="0 0 700 330" role="img" aria-label="Diagrama de flujo del ciclo de clasificación: leer el sensor de luz y llevar la pieza a la bandeja clara o a la oscura" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="700" height="330" fill="#fdfbf9"/>
-<defs><marker id="fl2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>
-<rect x="264" y="16" width="172" height="40" rx="20" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
-<text x="350" y="42" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2f568a">Pulsas SW1 (pin 2)</text>
-<line x1="350" y1="56" x2="350" y2="82" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
-<rect x="248" y="86" width="204" height="42" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
-<text x="350" y="112" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Leer analógica Pin A1 (LDR)</text>
-<line x1="350" y1="128" x2="350" y2="152" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
-<path d="M 350 154 L 470 200 L 350 246 L 230 200 Z" fill="#fff7e6" stroke="#a67c1a" stroke-width="3"/>
-<text x="350" y="196" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#7a5a0e">¿valor &lt; umbral?</text>
-<text x="350" y="216" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7a5a0e">(pieza oscura)</text>
-<line x1="230" y1="200" x2="150" y2="200" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
-<text x="190" y="190" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2e8b57">Sí</text>
-<line x1="470" y1="200" x2="552" y2="200" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
-<text x="512" y="190" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">No</text>
-<rect x="16" y="176" width="132" height="48" rx="6" fill="#e7f2ec" stroke="#2e8b57" stroke-width="3"/>
-<text x="82" y="198" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">Base a 45°</text>
-<text x="82" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">bandeja oscura</text>
-<rect x="554" y="176" width="132" height="48" rx="6" fill="#fdeaea" stroke="#a33" stroke-width="3"/>
-<text x="620" y="198" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">Base a 135°</text>
-<text x="620" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">bandeja clara</text>
-<line x1="82" y1="224" x2="82" y2="266" stroke="#555" stroke-width="3"/>
-<line x1="620" y1="224" x2="620" y2="266" stroke="#555" stroke-width="3"/>
-<line x1="82" y1="266" x2="620" y2="266" stroke="#555" stroke-width="3"/>
-<line x1="350" y1="266" x2="350" y2="286" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
-<rect x="238" y="288" width="224" height="38" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
-<text x="350" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Bajar paleta · subir · volver a 90°</text>
+  <svg viewBox="0 0 700 430" role="img" aria-label="Diagrama de flujo del ciclo de clasificación: el bucle comprueba si se ha pulsado SW1; si no, vuelve a empezar; si sí, lee el sensor de luz, lleva la pieza a la bandeja clara o a la oscura, baja y sube la paleta, vuelve a 90° y el bucle empieza de nuevo" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="700" height="430" fill="#fdfbf9"/>
+<defs><marker id="fl2" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 z" fill="#555"/></marker></defs>
+<rect x="240" y="12" width="220" height="36" rx="18" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
+<text x="350" y="35" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2f568a">Bucle (se repite siempre)</text>
+<line x1="350" y1="48" x2="350" y2="68" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<path d="M 350 72 L 470 112 L 350 152 L 230 112 Z" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
+<text x="350" y="110" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2f568a">¿SW1 pulsado?</text>
+<text x="350" y="128" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2f568a">(pin 2)</text>
+<polyline points="470,112 640,112 640,30 468,30" fill="none" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="520" y="102" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">No</text>
+<line x1="350" y1="152" x2="350" y2="174" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="366" y="168" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2e8b57">Sí</text>
+<rect x="248" y="178" width="204" height="40" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
+<text x="350" y="203" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Leer analógica Pin A1 (LDR)</text>
+<line x1="350" y1="218" x2="350" y2="238" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<path d="M 350 242 L 470 284 L 350 326 L 230 284 Z" fill="#fff7e6" stroke="#a67c1a" stroke-width="3"/>
+<text x="350" y="280" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#7a5a0e">¿valor &lt; umbral?</text>
+<text x="350" y="300" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7a5a0e">(pieza oscura)</text>
+<line x1="230" y1="284" x2="162" y2="284" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="196" y="274" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2e8b57">Sí</text>
+<line x1="470" y1="284" x2="538" y2="284" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<text x="504" y="274" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">No</text>
+<rect x="32" y="260" width="128" height="48" rx="6" fill="#e7f2ec" stroke="#2e8b57" stroke-width="3"/>
+<text x="96" y="281" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">Base a 45°</text>
+<text x="96" y="299" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1f6e43">bandeja oscura</text>
+<rect x="540" y="260" width="128" height="48" rx="6" fill="#fdeaea" stroke="#a33" stroke-width="3"/>
+<text x="604" y="281" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">Base a 135°</text>
+<text x="604" y="299" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a33">bandeja clara</text>
+<polyline points="96,308 96,344 604,344 604,308" fill="none" stroke="#555" stroke-width="3"/>
+<line x1="350" y1="344" x2="350" y2="364" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
+<rect x="220" y="368" width="260" height="38" rx="6" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>
+<text x="350" y="392" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#123">Bajar paleta · subir · volver a 90°</text>
+<polyline points="220,387 12,387 12,30 232,30" fill="none" stroke="#555" stroke-width="3" marker-end="url(#fl2)"/>
 </svg>
   <p>Fijaos en la forma del programa: hay un <strong>condicional dentro de otro</strong>. Primero
   compruebas si han pulsado el botón; solo si lo han pulsado, compruebas si la pieza es clara u oscura.
@@ -111,7 +117,7 @@
   entero. Podéis partir del condicional del proyecto <code>brazo sensor</code>.</p>
   <p>La estructura, en palabras:</p>
   <ol>
-    <li><strong>Si</strong> <code>Leer digital Pin 2</code> es ON (han puesto una pieza y pulsan):
+    <li><strong>Si</strong> <code>Leer digital Pin 2</code> es On (han puesto una pieza y pulsan):
       <ol>
         <li>Leer <code>Leer analógica Pin A1</code> y guardarlo en una variable <code>luz</code>.</li>
         <li><strong>Si</strong> <code>luz</code> &lt; vuestro umbral (el de la sesión 6) → base (pin 7) a <strong>45°</strong>.</li>
