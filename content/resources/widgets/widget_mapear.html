@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapear rangos</title>
+<style>
+/* Widget manipulable · 3.º CYR · SdA 05 (S7) y SdA 07 (S5, S8) · bloque mapear
+   Autocontenido: sin CDN, sin dependencias, sin almacenamiento.
+   Modo por el name del iframe (o #modo): brillo · servo */
+:root{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;--ok:#2a7d4f;--mal:#b3261e;--txt:#222;--gris:#6b6f7a;
+--fuente:Verdana,'DejaVu Sans',Arial,sans-serif;--mono:'DejaVu Sans Mono','Liberation Mono',Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--fuente);color:var(--txt);background:#fff;font-size:13px;line-height:1.45;padding:10px 12px 12px;overflow-x:hidden}
+.pest{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+.pest button{font-family:var(--fuente);font-size:12px;cursor:pointer;border:1px solid var(--chrome);background:#fff;color:var(--chrome);border-radius:5px;padding:4px 10px}
+.pest button[aria-pressed=true]{background:var(--chrome);color:#fff}
+.rej{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:center}
+.caja{border:1px solid var(--chrome-linea);border-radius:6px;background:var(--chrome-tinte);padding:8px 10px}
+label{font-size:12px;font-weight:700;color:var(--chrome-osc);display:flex;justify-content:space-between}
+label span{font-family:var(--mono);font-weight:400}
+input[type=range]{width:100%;accent-color:var(--chrome)}
+.bloque{margin:8px 0 0;padding:7px 10px;border-radius:6px;background:#5ba55b;color:#fff;font-family:var(--mono);font-size:12.5px;line-height:1.7}
+.bloque b{background:#fff;color:#333;border-radius:9px;padding:0 6px;font-weight:400}
+.cuenta{margin-top:6px;font-family:var(--mono);font-size:12px;color:var(--gris)}
+.lect{margin:10px 0 0;padding:6px 10px;border-radius:6px;font-size:12.5px;border:1px solid var(--ok);background:#eef8f1;color:#1d5636;min-height:40px}
+.lect.mal{border-color:var(--mal);background:#fbeeed;color:#8a1f19}
+.chk{font-size:12px;font-weight:400;color:var(--txt);display:flex;gap:6px;align-items:center;justify-content:flex-start;margin-top:6px}
+svg{width:100%;height:auto;display:block}
+button:focus-visible,input:focus-visible{outline:3px solid var(--chrome-osc);outline-offset:2px}
+@media (max-width:560px){.rej{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wg">
+  <div class="pest" role="group" aria-label="Qué controla el potenciómetro">
+    <button type="button" id="mB">Brillo de un LED (0–255)</button>
+    <button type="button" id="mS">Ángulo de un servo</button>
+  </div>
+  <div class="rej">
+    <div>
+      <div class="caja">
+        <label for="pot">Leer analógica Pin A0 <span id="vPot"></span></label>
+        <input id="pot" type="range" min="0" max="1023" step="1" value="512">
+        <div class="chk" id="filaLim"><input type="checkbox" id="lim" checked><label for="lim" style="font-weight:400;color:#222">limitar el recorrido a 30–150°</label></div>
+      </div>
+      <div class="bloque" id="bloque"></div>
+      <div class="cuenta" id="cuenta"></div>
+    </div>
+    <div><svg id="vis" viewBox="0 0 260 200" role="img" aria-label="Resultado del mapeo"></svg></div>
+  </div>
+  <div class="lect" id="lect"></div>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var cands=[window.name,(location.hash||'').slice(1),(new URLSearchParams(location.search)).get('modo')];
+  var modo='brillo';
+  for(var i=0;i<cands.length;i++){var c=(cands[i]||'').replace(/^modo=/,''); if(c==='brillo'||c==='servo'){modo=c;break;}}
+  function map(x,a,b,c,d){return Math.floor((x-a)*(d-c)/(b-a))+c;} /* igual que map() de Arduino: división entera */
+  function pinta(){
+    var v=+$('pot').value; $('vPot').textContent=v;
+    $('mB').setAttribute('aria-pressed',modo==='brillo'); $('mS').setAttribute('aria-pressed',modo==='servo');
+    $('filaLim').style.display=modo==='servo'?'':'none';
+    var svg='',lect='',mal=false;
+    if(modo==='brillo'){
+      var r=map(v,0,1023,0,255);
+      $('bloque').innerHTML='mapear <b>'+v+'</b> de <b>0</b> <b>1023</b> a <b>0</b> <b>255</b> → '+r;
+      $('cuenta').textContent='cuenta: '+v+' × 255 ÷ 1023 = '+r+' (se quitan los decimales)';
+      var a=(r/255);
+      svg='<rect x="0" y="0" width="260" height="200" fill="#1c1c22" rx="8"/>'+
+          '<circle cx="130" cy="92" r="'+(40+44*a)+'" fill="rgba(255,40,30,'+(0.35*a)+')"/>'+
+          '<circle cx="130" cy="92" r="30" fill="rgb('+Math.round(90+165*a)+','+Math.round(20+30*a)+','+Math.round(20+20*a)+')" stroke="#555" stroke-width="2"/>'+
+          '<text x="130" y="180" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="13" fill="#eee">Escribir analógica (PWM) Pin 9 · '+r+'</text>';
+      lect = r===0?'Rueda a cero: el LED apagado.' : r===255?'Rueda al máximo: 1023 se convierte en 255, el brillo máximo.' : 'El potenciómetro da un número entre 0 y 1023, pero el PWM solo admite 0–255. <code>mapear</code> hace la regla de tres: '+v+' de 1023 es lo mismo que '+r+' de 255.';
+    } else {
+      var L=$('lim').checked, lo=L?30:0, hi=L?150:180, g=map(v,0,1023,lo,hi);
+      $('bloque').innerHTML='mapear <b>'+v+'</b> de <b>0</b> <b>1023</b> a <b>'+lo+'</b> <b>'+hi+'</b> → '+g;
+      $('cuenta').textContent='cuenta: '+lo+' + '+v+' × '+(hi-lo)+' ÷ 1023 = '+g+'°';
+      var cx=130,cy=150,R=100;
+      function P(ang,rr){var t=Math.PI*(1-ang/180);return [cx+rr*Math.cos(t),cy-rr*Math.sin(t)];}
+      function sector(a1,a2,col){var p1=P(a1,R),p2=P(a2,R);return '<path d="M'+cx+' '+cy+' L'+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' A'+R+' '+R+' 0 0 1 '+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+' Z" fill="'+col+'"/>';}
+      svg='<rect x="0" y="0" width="260" height="200" fill="#fdfbf9" rx="8"/>'+sector(0,180,'#eef4ee')+sector(0,30,'#f6d6d3')+sector(150,180,'#f6d6d3');
+      [0,30,90,150,180].forEach(function(a){var p=P(a,R+12);svg+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="11" fill="#555">'+a+'°</text>';});
+      var e=P(g,R-8); var out=g<30||g>150; mal=out;
+      svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+e[0].toFixed(1)+'" y2="'+e[1].toFixed(1)+'" stroke="'+(out?'#b3261e':'#66371e')+'" stroke-width="9" stroke-linecap="round"/><circle cx="'+cx+'" cy="'+cy+'" r="11" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>'+
+           '<text x="130" y="192" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="13" fill="#333">Servo · Grados '+g+'</text>';
+      lect = out ? 'En '+g+'° el brazo entra en la zona roja: <b>ahí chocaría con su propia estructura</b>. Marca «limitar» y vuelve a probar.'
+                 : (L ? 'Con <code>a 30 150</code> la rueda recorre entera la zona segura: ni en los extremos llega a los topes.' : 'Con <code>a 0 180</code> el servo aprovecha todo el giro… mientras no llegue a los extremos.');
+    }
+    $('vis').innerHTML=svg; $('lect').innerHTML=lect; $('lect').classList.toggle('mal',mal);
+  }
+  $('mB').onclick=function(){modo='brillo';pinta()}; $('mS').onclick=function(){modo='servo';pinta()};
+  $('pot').addEventListener('input',pinta); $('lim').addEventListener('change',pinta);
+  pinta();
+})();
+</script>
+</body>
+</html>

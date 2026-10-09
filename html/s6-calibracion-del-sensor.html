@@ -76,6 +76,15 @@
   <p>Se lee con <code>Leer analógica Pin A1</code> y da un número de 0 a 1023.</p>
 </div>
 
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Pruébalo tú: el umbral del clasificador</p>
+  <p>Estas son veinte lecturas simuladas del sensor, diez de piezas claras y diez de oscuras. Mueve el umbral hasta que el brazo acierte siempre.</p>
+<style>.cyr-umbral{width:100%;max-width:100%;border:1px solid #e2d0c4;border-radius:6px;height:480px;display:block}</style>
+<script>(function(){function ajusta(){var fs=document.querySelectorAll("iframe.cyr-umbral");for(var i=0;i<fs.length;i++){var f=fs[i];if(!f.getBoundingClientRect().width)continue;try{var d=f.contentDocument,a=d&&d.querySelector(".wg");if(!a)continue;var h=Math.ceil(a.getBoundingClientRect().height+24);if(h>200&&Math.abs(h-f.clientHeight)>4)f.style.height=h+"px";}catch(e){}}}document.addEventListener("click",function(){setTimeout(ajusta,120);setTimeout(ajusta,600);},true);window.addEventListener("load",function(){ajusta();setTimeout(ajusta,400);});window.addEventListener("resize",function(){setTimeout(ajusta,150);});setInterval(ajusta,1000);})();</script>
+<iframe class="cyr-umbral" name="brazo" src="../content/resources/widgets/widget_umbral.html" title="Pruébalo tú: el umbral del clasificador" width="100%" loading="lazy"></iframe>
+  <p>Prueba también «otro día, más oscuro»: las mismas piezas dan números más bajos y hay que recalibrar.</p>
+</div>
+
 <div class="bloque bloque-resuelto">
   <p class="bloque-titulo">Práctica guiada · Calibrar el umbral</p>
   <p>El valor que separa «claro» de «oscuro» <strong>no se puede saber de antemano</strong>: depende de

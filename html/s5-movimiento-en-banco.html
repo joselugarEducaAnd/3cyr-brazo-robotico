@@ -136,6 +136,15 @@
   siguiéndola. Si va a tirones, subid un poco el retardo.</p>
 </div>
 
+<div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Pruébalo tú: mapear con límites</p>
+  <p>Gira la rueda con y sin límites y mira dónde acaba el servo.</p>
+<style>.cyr-mapear{width:100%;max-width:100%;border:1px solid #e2d0c4;border-radius:6px;height:560px;display:block}</style>
+<script>(function(){function ajusta(){var fs=document.querySelectorAll("iframe.cyr-mapear");for(var i=0;i<fs.length;i++){var f=fs[i];if(!f.getBoundingClientRect().width)continue;try{var d=f.contentDocument,a=d&&d.querySelector(".wg");if(!a)continue;var h=Math.ceil(a.getBoundingClientRect().height+24);if(h>200&&Math.abs(h-f.clientHeight)>4)f.style.height=h+"px";}catch(e){}}}document.addEventListener("click",function(){setTimeout(ajusta,120);setTimeout(ajusta,600);},true);window.addEventListener("load",function(){ajusta();setTimeout(ajusta,400);});window.addEventListener("resize",function(){setTimeout(ajusta,150);});setInterval(ajusta,1000);})();</script>
+<iframe class="cyr-mapear" name="servo" src="../content/resources/widgets/widget_mapear.html" title="Pruébalo tú: mapear con límites" width="100%" loading="lazy"></iframe>
+  <p>Con <code>a 30 150</code> la rueda sigue recorriendo de 0 a 1023, pero el servo ya no puede llegar a los topes.</p>
+</div>
+
 <div class="bloque bloque-nota">
   <p class="bloque-titulo">Cuidado con los topes</p>
   <p>Ahora los servos están sueltos y pueden ir de 0° a 180° sin problema, pero dentro del brazo las

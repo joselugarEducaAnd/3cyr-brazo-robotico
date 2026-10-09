@@ -67,27 +67,32 @@
   electrónica de Arduino, los sensores y el diseño 3D que ya has trabajado antes.</p>
 </div>
 
-<svg viewBox="0 0 700 300" role="img" aria-label="Brazo robótico con sus dos grados de libertad: giro de la base y elevación del antebrazo" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 700 300" role="img" aria-label="Brazo robótico con sus dos grados de libertad: giro de la base alrededor de un eje vertical y elevación del antebrazo alrededor de un eje horizontal" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="700" height="300" fill="#fdfbf9"/>
-<rect x="250" y="240" width="200" height="26" rx="6" fill="#d8cdc4" stroke="#8a4b2a" stroke-width="2"/>
-<text x="350" y="285" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">Base fija atornillada a la mesa</text>
-<circle cx="350" cy="240" r="30" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/>
-<text x="350" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#8a4b2a">GDL 1</text>
-<path d="M 292 240 A 58 58 0 0 1 408 240" fill="none" stroke="#2f568a" stroke-width="3" stroke-dasharray="6 4"/>
-<text x="350" y="192" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2f568a">giro de la base (eje vertical)</text>
-<line x1="350" y1="240" x2="470" y2="140" stroke="#66371e" stroke-width="14" stroke-linecap="round"/>
-<circle cx="470" cy="140" r="22" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/>
-<text x="470" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#8a4b2a">GDL 2</text>
-<line x1="470" y1="140" x2="600" y2="170" stroke="#66371e" stroke-width="11" stroke-linecap="round"/>
-<rect x="596" y="158" width="34" height="26" rx="4" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
-<text x="613" y="205" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2f568a">paleta</text>
-<path d="M 520 92 A 70 70 0 0 1 545 178" fill="none" stroke="#2e8b57" stroke-width="3" stroke-dasharray="6 4"/>
-<text x="580" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e8b57">elevación (eje horizontal)</text>
+<defs><marker id="brA" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f568a"/></marker><marker id="brB" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e8b57"/></marker></defs>
+<ellipse cx="330" cy="258" rx="115" ry="20" fill="#d8cdc4" stroke="#8a4b2a" stroke-width="2"/>
+<text x="330" y="294" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#555">Base fija atornillada a la mesa</text>
+<line x1="330" y1="112" x2="330" y2="276" stroke="#2f568a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect x="306" y="206" width="48" height="46" rx="6" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/>
+<ellipse cx="330" cy="206" rx="24" ry="7" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="2"/>
+<path d="M 262 232 A 68 16 0 0 0 398 232" fill="none" stroke="#2f568a" stroke-width="3" stroke-dasharray="7 4" marker-start="url(#brA)" marker-end="url(#brA)"/>
+<line x1="330" y1="206" x2="440" y2="118" stroke="#66371e" stroke-width="14" stroke-linecap="round"/>
+<circle cx="440" cy="118" r="18" fill="#f3ebe5" stroke="#8a4b2a" stroke-width="3"/><circle cx="440" cy="118" r="4" fill="#8a4b2a"/>
+<line x1="440" y1="118" x2="572" y2="148" stroke="#66371e" stroke-width="11" stroke-linecap="round"/>
+<rect x="568" y="136" width="36" height="26" rx="4" fill="#e8eef7" stroke="#2f568a" stroke-width="3"/>
+<text x="586" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="normal" fill="#2f568a">paleta</text>
+<path d="M 521.2 74.8 A 92 92 0 0 1 501.6 186.4" fill="none" stroke="#2e8b57" stroke-width="3" stroke-dasharray="7 4" marker-start="url(#brB)" marker-end="url(#brB)"/>
+<text x="610" y="50" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2e8b57">GDL 2</text>
+<text x="610" y="68" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#2e8b57">elevación del antebrazo</text>
+<text x="610" y="85" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="normal" fill="#2e8b57">(eje horizontal)</text>
+<text x="250" y="196" text-anchor="end" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2f568a">GDL 1</text>
+<text x="250" y="214" text-anchor="end" font-family="sans-serif" font-size="13" font-weight="normal" fill="#2f568a">giro de la base</text>
+<text x="250" y="231" text-anchor="end" font-family="sans-serif" font-size="12" font-weight="normal" fill="#2f568a">(eje vertical)</text>
 <text x="140" y="60" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#8a4b2a">2 grados</text>
 <text x="140" y="84" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#8a4b2a">de libertad</text>
-<text x="140" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">= 2 movimientos</text>
-<text x="140" y="138" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">independientes</text>
-<text x="140" y="158" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#555">= 2 servomotores</text>
+<text x="140" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#555">= 2 movimientos</text>
+<text x="140" y="138" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#555">independientes</text>
+<text x="140" y="158" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#555">= 2 servomotores</text>
 </svg>
 
 <div class="bloque bloque-teoria">

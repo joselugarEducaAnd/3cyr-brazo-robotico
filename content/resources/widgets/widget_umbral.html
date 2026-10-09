@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elegir el umbral de un sensor</title>
+<style>
+/* Widget manipulable · 3.º CYR · SdA 05 (S7, farola) y SdA 07 (S6, clasificador) · umbral de la LDR
+   Autocontenido: sin CDN, sin dependencias, sin almacenamiento. Lecturas simuladas.
+   Contexto por el name del iframe (o #modo): farola · brazo */
+:root{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;--ok:#2a7d4f;--mal:#b3261e;--txt:#222;--gris:#6b6f7a;
+--fuente:Verdana,'DejaVu Sans',Arial,sans-serif;--mono:'DejaVu Sans Mono','Liberation Mono',Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--fuente);color:var(--txt);background:#fff;font-size:13px;line-height:1.45;padding:10px 12px 12px;overflow-x:hidden}
+.caja{border:1px solid var(--chrome-linea);border-radius:6px;background:var(--chrome-tinte);padding:8px 10px}
+label{font-size:12px;font-weight:700;color:var(--chrome-osc);display:flex;justify-content:space-between}
+label span{font-family:var(--mono);font-weight:400}
+input[type=range]{width:100%;accent-color:var(--chrome)}
+.fila{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.fila .t{font-size:12px;font-weight:700;color:var(--chrome-osc)}
+.fila button{font-family:var(--fuente);font-size:12px;cursor:pointer;border:1px solid var(--chrome);background:#fff;color:var(--chrome);border-radius:5px;padding:4px 10px}
+.fila button[aria-pressed=true]{background:var(--chrome);color:#fff}
+.marc{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.dato{flex:1 1 120px;border:1px solid var(--chrome-linea);border-radius:6px;padding:4px 9px;background:#fff}
+.dato .k{font-size:10.5px;color:var(--gris);text-transform:uppercase;letter-spacing:.03em}
+.dato .v{font-size:17px;font-weight:700}
+.bl{margin:8px 0 0;font-family:var(--mono);font-size:12px;background:#e6a31a;color:#222;border-radius:6px;padding:6px 10px;line-height:1.7}
+.bl b{background:#fff;border-radius:9px;padding:0 6px;font-weight:400}
+.lect{margin:8px 0 0;padding:6px 10px;border-radius:6px;font-size:12.5px;border:1px solid var(--ok);background:#eef8f1;color:#1d5636;min-height:40px}
+.lect.mal{border-color:var(--mal);background:#fbeeed;color:#8a1f19}
+svg{width:100%;height:auto;display:block}
+button:focus-visible,input:focus-visible{outline:3px solid var(--chrome-osc);outline-offset:2px}
+</style>
+</head>
+<body>
+<main class="wg">
+  <svg id="eje" viewBox="0 0 640 150" role="img" aria-label="Lecturas del sensor de luz sobre una recta de 0 a 1023 y la posición del umbral"></svg>
+  <div class="caja"><label for="u">Vuestro umbral <span id="vu"></span></label><input id="u" type="range" min="0" max="1023" value="850"></div>
+  <div class="fila"><span class="t">Luz de la sala:</span>
+    <button type="button" id="l0" aria-pressed="true">la de siempre</button>
+    <button type="button" id="l1" aria-pressed="false">otro día, más oscuro</button>
+  </div>
+  <div class="marc">
+    <div class="dato"><div class="k">aciertos</div><div class="v" id="ok"></div></div>
+    <div class="dato"><div class="k">fallos</div><div class="v" id="ko"></div></div>
+  </div>
+  <div class="bl" id="bl"></div>
+  <div class="lect" id="lect"></div>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var cs=[window.name,(location.hash||'').slice(1)], modo='brazo';
+  for(var i=0;i<cs.length;i++){var c=(cs[i]||'').replace(/^modo=/,''); if(c==='farola'||c==='brazo'){modo=c;break;}}
+  var C = modo==='farola'
+    ? {alto:'con luz',bajo:'tapada (poca luz)',sibajo:'Escribir digital Pin <b>13</b> · <b>On</b>',sino:'Escribir digital Pin <b>13</b> · <b>Off</b>',obj:'la farola'}
+    : {alto:'pieza clara',bajo:'pieza oscura',sibajo:'Servo Pin <b>7</b> · Grados <b>45</b>',sino:'Servo Pin <b>7</b> · Grados <b>135</b>',obj:'el brazo'};
+  /* lecturas simuladas (fijas, para que todo el grupo vea lo mismo): claro ~700, oscuro ~300 */
+  var claro=[652,668,681,690,698,705,712,720,731,744], oscuro=[248,262,275,289,296,304,311,322,338,352];
+  var desv=0;
+  function X(v){return 20+v*600/1023;}
+  function pinta(){
+    var u=+$('u').value; $('vu').textContent=u;
+    var s='<rect width="640" height="150" fill="#fdfbf9"/><line x1="20" y1="100" x2="620" y2="100" stroke="#999" stroke-width="2"/>';
+    [0,256,512,768,1023].forEach(function(t){s+='<line x1="'+X(t)+'" y1="96" x2="'+X(t)+'" y2="104" stroke="#999"/><text x="'+X(t)+'" y="120" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="11" fill="#777">'+t+'</text>';});
+    s+='<text x="20" y="142" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="11" fill="#777">Leer analógica Pin A1</text>';
+    var ok=0,ko=0;
+    function pts(arr,esOsc,y,col){arr.forEach(function(v){v=Math.max(0,v-desv); var dice=v<u; var bien=(dice===esOsc); bien?ok++:ko++;
+      s+='<circle cx="'+X(v).toFixed(1)+'" cy="'+y+'" r="7" fill="'+col+'" stroke="'+(bien?'#2a7d4f':'#b3261e')+'" stroke-width="'+(bien?2:3.5)+'"/>'+(bien?'':'<text x="'+X(v).toFixed(1)+'" y="'+(y-11)+'" text-anchor="middle" font-size="11" font-weight="bold" fill="#b3261e" font-family="Verdana,DejaVu Sans,Arial,sans-serif">×</text>');});}
+    pts(claro,false,58,'#f7f2e3'); pts(oscuro,true,78,'#444');
+    s+='<text x="'+X(700-desv)+'" y="30" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="12" fill="#555">'+C.alto+'</text>';
+    s+='<text x="'+X(300-desv)+'" y="30" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="12" fill="#555">'+C.bajo+'</text>';
+    s+='<line x1="'+X(u)+'" y1="38" x2="'+X(u)+'" y2="108" stroke="#a24a2f" stroke-width="3" stroke-dasharray="6 3"/><text x="'+X(u)+'" y="16" text-anchor="middle" font-family="Verdana,DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="bold" fill="#a24a2f">umbral</text>';
+    $('eje').innerHTML=s; $('ok').textContent=ok+' de 20'; $('ko').textContent=ko;
+    $('bl').innerHTML='si Leer analógica Pin A1 &lt; <b>'+u+'</b> → '+C.sibajo+'<br>si no → '+C.sino;
+    var t,mal=ko>0;
+    if(ko===0) t='Todas bien clasificadas. Fíjate en que cualquier umbral en el hueco entre los dos grupos funciona, pero el <b>punto medio</b> es el que más margen deja si la luz cambia un poco.';
+    else if(u>=(652-desv)&&u<=(744-desv)) t='El umbral está metido dentro de las lecturas de «'+C.alto+'»: algunas quedan por debajo y '+C.obj+' se equivoca con ellas.';
+    else if(u>=(248-desv)&&u<=(352-desv)) t='El umbral está metido dentro de las lecturas de «'+C.bajo+'»: algunas quedan por encima y '+C.obj+' se equivoca con ellas.';
+    else t='Con este umbral un grupo entero queda del lado equivocado.';
+    if(desv&&ko>0) t+=' Con menos luz <b>todas las lecturas bajan</b>: el umbral que servía ayer ya no vale. Por eso hay que recalibrar.';
+    $('lect').innerHTML=t; $('lect').classList.toggle('mal',mal);
+  }
+  $('u').addEventListener('input',pinta);
+  $('l0').onclick=function(){desv=0;$('l0').setAttribute('aria-pressed',true);$('l1').setAttribute('aria-pressed',false);pinta();};
+  $('l1').onclick=function(){desv=180;$('l0').setAttribute('aria-pressed',false);$('l1').setAttribute('aria-pressed',true);pinta();};
+  pinta();
+})();
+</script>
+</body>
+</html>

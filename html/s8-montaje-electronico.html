@@ -82,24 +82,39 @@
   <p>Fijad el Arduino con el shield sobre la base (con tornillos o con cinta de doble cara), con el
   conector USB hacia fuera para poder enchufarlo. Después, con el USB desconectado, conectad los dos
   servos al shield:</p>
-  <svg viewBox="0 0 660 220" role="img" aria-label="Conexión de los tres cables del servo al shield: naranja a señal, rojo a 5 voltios y marrón a masa" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="660" height="220" fill="#fdfbf9"/>
-<rect x="380" y="40" width="240" height="150" rx="9" fill="#e8f0eb" stroke="#2e8b57" stroke-width="3"/>
-<text x="500" y="68" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1f6e43">Shield HY-M302</text>
-<g font-family="sans-serif" font-size="14" fill="#123">
-<rect x="404" y="86" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="102" text-anchor="middle">7</text>
-<rect x="404" y="118" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="134" text-anchor="middle">5V</text>
-<rect x="404" y="150" width="34" height="22" rx="3" fill="#fff" stroke="#555"/><text x="421" y="166" text-anchor="middle">GND</text></g>
-<rect x="40" y="78" width="104" height="96" rx="7" fill="#d8e6f2" stroke="#2f568a" stroke-width="3"/>
-<text x="92" y="62" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2f568a">Servo SG90</text>
-<line x1="144" y1="97" x2="404" y2="97" stroke="#e08b1e" stroke-width="6"/>
-<line x1="144" y1="126" x2="404" y2="129" stroke="#cc2b2b" stroke-width="6"/>
-<line x1="144" y1="155" x2="404" y2="161" stroke="#6b4423" stroke-width="6"/>
-<g font-family="sans-serif" font-size="13">
-<text x="270" y="90" text-anchor="middle" fill="#b06a10">NARANJA · señal</text>
-<text x="270" y="120" text-anchor="middle" fill="#cc2b2b">ROJO · 5V</text>
-<text x="270" y="180" text-anchor="middle" fill="#6b4423">MARRÓN · GND</text></g>
-<text x="330" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a33">El segundo servo va igual, pero su cable naranja al pin 8</text>
+  <svg viewBox="0 0 700 292" role="img" aria-label="Conexión de los servos al shield: cada servo va a un conector de tres pines serigrafiado D7, VCC, GND (base) y D8, VCC, GND (antebrazo); el cable naranja va al pin de señal, el rojo a VCC y el marrón a GND" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="700" height="292" fill="#fdfbf9"/>
+<rect x="390" y="20" width="290" height="236" rx="10" fill="#26303a" stroke="#111" stroke-width="2"/>
+<text x="535" y="44" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#e8e8e8">Shield (vista superior)</text>
+<rect x="470" y="70" width="126" height="34" rx="3" fill="#1e1e1e"/>
+<rect x="482" y="78" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="491" y="124" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">D7</text>
+<rect x="524" y="78" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="533" y="124" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">VCC</text>
+<rect x="566" y="78" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="575" y="124" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">GND</text>
+<rect x="470" y="170" width="126" height="34" rx="3" fill="#1e1e1e"/>
+<rect x="482" y="178" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="491" y="224" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">D8</text>
+<rect x="524" y="178" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="533" y="224" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">VCC</text>
+<rect x="566" y="178" width="18" height="18" fill="#e3b64a" stroke="#9c7a1f"/>
+<text x="575" y="224" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f1f1">GND</text>
+<rect x="18" y="58" width="116" height="60" rx="7" fill="#d8e6f2" stroke="#2f568a" stroke-width="3"/>
+<text x="76" y="84" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2f568a">Servo base</text>
+<text x="76" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="normal" fill="#2f568a">GDL 1</text>
+<path d="M134 79 C 260 79, 491 10, 491 74" fill="none" stroke="#e08b1e" stroke-width="6" stroke-linecap="round"/>
+<path d="M134 87 C 260 87, 533 10, 533 74" fill="none" stroke="#cc2b2b" stroke-width="6" stroke-linecap="round"/>
+<path d="M134 95 C 260 95, 575 10, 575 74" fill="none" stroke="#6b4423" stroke-width="6" stroke-linecap="round"/>
+<rect x="470" y="64" width="126" height="16" rx="3" fill="#222" opacity=".85"/>
+<rect x="18" y="158" width="116" height="60" rx="7" fill="#d8e6f2" stroke="#2f568a" stroke-width="3"/>
+<text x="76" y="184" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2f568a">Servo antebrazo</text>
+<text x="76" y="200" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="normal" fill="#2f568a">GDL 2</text>
+<path d="M134 179 C 260 179, 491 110, 491 174" fill="none" stroke="#e08b1e" stroke-width="6" stroke-linecap="round"/>
+<path d="M134 187 C 260 187, 533 110, 533 174" fill="none" stroke="#cc2b2b" stroke-width="6" stroke-linecap="round"/>
+<path d="M134 195 C 260 195, 575 110, 575 174" fill="none" stroke="#6b4423" stroke-width="6" stroke-linecap="round"/>
+<rect x="470" y="164" width="126" height="16" rx="3" fill="#222" opacity=".85"/>
+<text x="350" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="normal" fill="#555">naranja → D7 / D8 (señal) · rojo → VCC · marrón → GND</text>
 </svg>
   <table class="tabla-datos">
     <thead><tr><th>Servo</th><th>Naranja (señal)</th><th>Rojo</th><th>Marrón</th></tr></thead>

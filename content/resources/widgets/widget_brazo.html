@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador del brazo de 2 GDL</title>
+<style>
+/* Widget manipulable · 3.º CYR · SdA 07 · brazo de 2 GDL (base pin 7, antebrazo pin 8)
+   Autocontenido: sin CDN, sin dependencias, sin almacenamiento. */
+:root{--chrome:#8a4b2a;--chrome-osc:#66371e;--chrome-tinte:#f3ebe5;--chrome-linea:#e2d0c4;--ok:#2a7d4f;--mal:#b3261e;--txt:#222;--gris:#6b6f7a;
+--fuente:Verdana,'DejaVu Sans',Arial,sans-serif;--mono:'DejaVu Sans Mono','Liberation Mono',Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--fuente);color:var(--txt);background:#fff;font-size:13px;line-height:1.45;padding:10px 12px 12px;overflow-x:hidden}
+.vistas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vista{border:1px solid var(--chrome-linea);border-radius:6px;background:#fdfbf9}
+.vista h3{margin:4px 8px 0;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--chrome-osc)}
+svg{width:100%;height:auto;display:block}
+.ctr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.caja{border:1px solid var(--chrome-linea);border-radius:6px;background:var(--chrome-tinte);padding:8px 10px}
+label{font-size:12px;font-weight:700;color:var(--chrome-osc);display:flex;justify-content:space-between}
+label span{font-family:var(--mono);font-weight:400}
+input[type=range]{width:100%;accent-color:var(--chrome)}
+.bl{margin-top:6px;font-family:var(--mono);font-size:11.5px;background:#4c97d6;color:#fff;border-radius:6px;padding:4px 8px}
+.bl b{background:#fff;color:#333;border-radius:9px;padding:0 5px;font-weight:400}
+.fila{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.fila button{font-family:var(--fuente);font-size:12px;cursor:pointer;border:1px solid var(--chrome);background:#fff;color:var(--chrome);border-radius:5px;padding:4px 10px;min-height:28px}
+.fila button.prin{background:var(--chrome);color:#fff}
+.fila label{font-weight:400;color:var(--txt);gap:6px;align-items:center}
+.lect{margin:8px 0 0;padding:6px 10px;border-radius:6px;font-size:12.5px;border:1px solid var(--ok);background:#eef8f1;color:#1d5636;min-height:40px}
+.lect.mal{border-color:var(--mal);background:#fbeeed;color:#8a1f19}
+button:disabled{opacity:.4}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--chrome-osc);outline-offset:2px}
+@media (max-width:560px){.vistas,.ctr{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wg">
+  <div class="vistas">
+    <div class="vista"><h3>Desde arriba · base (GDL 1)</h3><svg id="top" viewBox="0 0 260 190" role="img" aria-label="Vista cenital: la base gira y apunta a una de las dos bandejas"></svg></div>
+    <div class="vista"><h3>De lado · antebrazo (GDL 2)</h3><svg id="lado" viewBox="0 0 260 190" role="img" aria-label="Vista lateral: el antebrazo sube y baja"></svg></div>
+  </div>
+  <div class="ctr">
+    <div class="caja"><label for="b">Base · pin 7 <span id="vb"></span></label><input id="b" type="range" min="0" max="180" value="90"><div class="bl" id="blb"></div></div>
+    <div class="caja"><label for="a">Antebrazo · pin 8 <span id="va"></span></label><input id="a" type="range" min="0" max="180" value="120"><div class="bl" id="bla"></div></div>
+  </div>
+  <div class="fila">
+    <label>Pieza: <select id="pieza"><option value="oscura">oscura</option><option value="clara">clara</option></select></label>
+    <button type="button" class="prin" id="ciclo">▶ Reproducir el ciclo</button>
+    <button type="button" id="centro">Volver a 90°</button>
+  </div>
+  <div class="lect" id="lect"></div>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var LO=30, HI=150, anim=null, msgCiclo='';
+  function rad(d){return d*Math.PI/180;}
+  function sector(cx,cy,R,a1,a2,col,flip){ /* ángulos de servo 0..180, 0 a la derecha, 180 a la izquierda (arriba en cenital) */
+    function P(a){var t=Math.PI*(1-a/180); return [cx+R*Math.cos(t), cy-(flip?-1:1)*R*Math.sin(t)];}
+    var p1=P(a1),p2=P(a2); return '<path d="M'+cx+' '+cy+' L'+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' A'+R+' '+R+' 0 0 '+(flip?0:1)+' '+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+' Z" fill="'+col+'"/>';
+  }
+  function pinta(){
+    var b=+$('b').value, a=+$('a').value; $('vb').textContent=b+'°'; $('va').textContent=a+'°';
+    $('blb').innerHTML='Servo Pin <b>7</b> · Grados <b>'+b+'</b>'; $('bla').innerHTML='Servo Pin <b>8</b> · Grados <b>'+a+'</b>';
+    var fb=b<LO||b>HI, fa=a<LO||a>HI;
+    /* cenital */
+    var cx=130,cy=150,R=110,s='';
+    s+=sector(cx,cy,R,0,180,'#eef4ee')+sector(cx,cy,R,0,LO,'#f6d6d3')+sector(cx,cy,R,HI,180,'#f6d6d3');
+    function Pt(a,r){var t=Math.PI*(1-a/180);return [cx+r*Math.cos(t),cy-r*Math.sin(t)];}
+    var t1=Pt(45,88),t2=Pt(135,88);
+    s+='<rect x="'+(t1[0]-20)+'" y="'+(t1[1]-13)+'" width="40" height="26" rx="4" fill="#444"/><text x="'+t1[0]+'" y="'+(t1[1]+30)+'" text-anchor="middle" font-size="10.5" fill="#333" font-family="Verdana,DejaVu Sans,Arial,sans-serif">oscura · 45°</text>';
+    s+='<rect x="'+(t2[0]-20)+'" y="'+(t2[1]-13)+'" width="40" height="26" rx="4" fill="#f4ecd6" stroke="#bba77a"/><text x="'+t2[0]+'" y="'+(t2[1]+30)+'" text-anchor="middle" font-size="10.5" fill="#333" font-family="Verdana,DejaVu Sans,Arial,sans-serif">clara · 135°</text>';
+    var e=Pt(b,78);
+    s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+e[0].toFixed(1)+'" y2="'+e[1].toFixed(1)+'" stroke="'+(fb?'#b3261e':'#66371e')+'" stroke-width="12" stroke-linecap="round"/>';
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="14" fill="#fff" stroke="#8a4b2a" stroke-width="3"/><text x="'+cx+'" y="'+(cy+32)+'" text-anchor="middle" font-size="10.5" fill="#777" font-family="Verdana,DejaVu Sans,Arial,sans-serif">base</text>';
+    $('top').innerHTML=s;
+    /* lateral: hombro en (70,120); antebrazo gira en el plano vertical; 90° = horizontal */
+    var hx=70,hy=110,L=120,z='';
+    function Q(ang,r){var t=rad(ang-90);return [hx+r*Math.cos(t),hy-r*Math.sin(t)];}
+    function arco(a1,a2,col){var p1=Q(a1,L+14),p2=Q(a2,L+14);return '<path d="M'+hx+' '+hy+' L'+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' A'+(L+14)+' '+(L+14)+' 0 0 0 '+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+' Z" fill="'+col+'"/>';}
+    z+=arco(0,180,'#eef4ee')+arco(0,LO,'#f6d6d3')+arco(HI,180,'#f6d6d3');
+    z+='<rect x="0" y="176" width="260" height="14" fill="#d8cdc4"/><rect x="'+(hx-12)+'" y="'+hy+'" width="24" height="66" fill="#e8ddd3" stroke="#8a4b2a" stroke-width="2"/>';
+    var f=Q(a,L);
+    z+='<line x1="'+hx+'" y1="'+hy+'" x2="'+f[0].toFixed(1)+'" y2="'+f[1].toFixed(1)+'" stroke="'+(fa?'#b3261e':'#66371e')+'" stroke-width="10" stroke-linecap="round"/>';
+    z+='<rect x="'+(f[0]-9).toFixed(1)+'" y="'+(f[1]-9).toFixed(1)+'" width="18" height="18" rx="3" fill="#e8eef7" stroke="#2f568a" stroke-width="2"/>';
+    z+='<circle cx="'+hx+'" cy="'+hy+'" r="10" fill="#fff" stroke="#8a4b2a" stroke-width="3"/>';
+    $('lado').innerHTML=z;
+    var t,mal=fb||fa;
+    if(mal) t='<b>¡Choque!</b> '+(fb?'La base':'El antebrazo')+' está en '+(fb?b:a)+'°, fuera de 30–150°: ahí vuestras piezas rozarían. Por eso el programa usa <code>mapear … a 30 150</code> y ángulos dentro de ese margen.';
+    else t=msgCiclo||'Mueve los dos deslizadores: cada uno es un servo y cada servo es un grado de libertad. Con dos, el brazo puede llevar la paleta a cualquier bandeja.';
+    $('lect').innerHTML=t; $('lect').classList.toggle('mal',mal);
+  }
+  function ir(id,dest,ms){return new Promise(function(res){var ini=+$(id).value,t0=performance.now();
+    (function paso(t){var k=Math.min(1,(t-t0)/ms); $(id).value=Math.round(ini+(dest-ini)*k); pinta(); if(k<1) anim=requestAnimationFrame(paso); else res();})(performance.now());});}
+  function espera(ms){return new Promise(function(r){setTimeout(r,ms)});}
+  $('ciclo').onclick=async function(){
+    var osc=$('pieza').value==='oscura'; this.disabled=true; $('centro').disabled=true;
+    msgCiclo='1. La LDR lee la pieza: '+(osc?'valor &lt; umbral → pieza oscura.':'valor ≥ umbral → pieza clara.'); pinta(); await espera(900);
+    msgCiclo='2. La base gira a '+(osc?'45°':'135°')+' (bandeja '+(osc?'oscura':'clara')+').'; await ir('b',osc?45:135,900);
+    msgCiclo='3. Baja el antebrazo para soltar la pieza.'; await ir('a',60,700);
+    msgCiclo='4. Sube el antebrazo.'; await ir('a',120,700);
+    msgCiclo='5. La base vuelve a 90° y el bucle empieza de nuevo.'; await ir('b',90,900);
+    msgCiclo=''; pinta(); this.disabled=false; $('centro').disabled=false;
+  };
+  $('centro').onclick=async function(){await ir('b',90,500); await ir('a',120,400);};
+  ['b','a'].forEach(function(i){$(i).addEventListener('input',function(){msgCiclo='';pinta();})});
+  pinta();
+})();
+</script>
+</body>
+</html>

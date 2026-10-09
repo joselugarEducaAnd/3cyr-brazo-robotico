@@ -112,6 +112,15 @@
 </div>
 
 <div class="bloque bloque-actividad">
+  <p class="bloque-titulo">Pruébalo tú: el ciclo, paso a paso</p>
+  <p>Elige si la pieza es clara u oscura y reproduce el ciclo. Compara cada paso con el diagrama de arriba.</p>
+<style>.cyr-brazo{width:100%;max-width:100%;border:1px solid #e2d0c4;border-radius:6px;height:830px;display:block}</style>
+<script>(function(){function ajusta(){var fs=document.querySelectorAll("iframe.cyr-brazo");for(var i=0;i<fs.length;i++){var f=fs[i];if(!f.getBoundingClientRect().width)continue;try{var d=f.contentDocument,a=d&&d.querySelector(".wg");if(!a)continue;var h=Math.ceil(a.getBoundingClientRect().height+24);if(h>200&&Math.abs(h-f.clientHeight)>4)f.style.height=h+"px";}catch(e){}}}document.addEventListener("click",function(){setTimeout(ajusta,120);setTimeout(ajusta,600);},true);window.addEventListener("load",function(){ajusta();setTimeout(ajusta,400);});window.addEventListener("resize",function(){setTimeout(ajusta,150);});setInterval(ajusta,1000);})();</script>
+<iframe class="cyr-brazo" name="" src="../content/resources/widgets/widget_brazo.html" title="Pruébalo tú: el ciclo, paso a paso" width="100%" loading="lazy"></iframe>
+  <p>En vuestro brazo los ángulos para bajar y subir la paleta dependen de cómo hayáis montado el servo: los de la simulación son orientativos.</p>
+</div>
+
+<div class="bloque bloque-actividad">
   <p class="bloque-titulo">Tarea · El clasificador</p>
   <p>Cread un proyecto <strong>UNO</strong> llamado <code>brazo clasificador</code> y programad el ciclo
   entero. Podéis partir del condicional del proyecto <code>brazo sensor</code>.</p>
