@@ -10,8 +10,7 @@
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
 <script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
 <script src="../idevices/crossword/crossword.js"></script><link rel="stylesheet" href="../idevices/crossword/crossword.css">
-<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script>
-<script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
 </head>
 <body class="exe-export exe-web-site">
 <script>document.body.className+=" js"</script>
@@ -96,7 +95,7 @@
     <tbody>
       <tr><td>mover un servo</td><td><code>Servo · Pin · Grados · Retardo (ms)</code></td><td>Motor › Servo</td></tr>
       <tr><td>poner un ángulo</td><td><code>Ángulo</code></td><td>Matemáticas</td></tr>
-      <tr><td>leer un pulsador</td><td><code>Leer digital Pin</code></td><td>Entrada/Salida</td></tr>
+      <tr><td>leer un pulsador (pulsado = Off)</td><td><code>Leer digital Pin</code> = <code>Off</code></td><td>Entrada/Salida</td></tr>
       <tr><td>leer el LDR o el potenciómetro</td><td><code>Leer analógica Pin</code></td><td>Entrada/Salida</td></tr>
       <tr><td>encender un LED</td><td><code>Escribir digital Pin · On/Off</code></td><td>Entrada/Salida</td></tr>
       <tr><td>traducir 0-1023 a 0-180</td><td><code>mapear … de … a …</code></td><td>Matemáticas</td></tr>
@@ -153,7 +152,10 @@
       <tr><td>El servo zumba y no gira</td><td>algo se lo impide</td><td>desconectar el USB YA y buscar el tope</td></tr>
       <tr><td>El servo se calienta</td><td>rojo y marrón cambiados</td><td>desconectar y recablear</td></tr>
       <tr><td>El pulsador no responde</td><td>pin equivocado, o el shield mal encajado</td><td>SW1 es el 2 y SW2 el 3</td></tr>
-      <tr><td>El LDR da siempre lo mismo</td><td>poca diferencia de luz</td><td>acercar el sensor, usar piezas con más contraste</td></tr>
+      <tr><td>El servo se mueve sin pulsar nada</td><td>el programa compara con On</td><td>pulsado = Off: comparar con Off</td></tr>
+      <tr><td>Un pulsador da siempre lo mismo</td><td>el shield toca la parte metálica del USB (cortocircuito)</td><td>separar un poco el shield o poner cinta aislante sobre el USB</td></tr>
+      <tr><td>El LDR da siempre lo mismo</td><td>poca diferencia de luz, o el LDR está flojo</td><td>acercar el sensor, usar piezas con más contraste; con el USB desconectado, mover el LDR un poco con cuidado</td></tr>
+      <tr><td>Una lectura analógica «sigue» a otra</td><td>al leer dos entradas analógicas seguidas, la segunda sale contagiada de la primera</td><td>leer esa entrada dos veces y quedarse con la segunda, o poner un Esperar de 10 ms antes</td></tr>
       <tr><td>El brazo se mueve a tirones</td><td>retardo demasiado corto</td><td>subir el retardo del bloque Servo</td></tr>
       <tr><td>El brazo tarda en obedecer</td><td>retardo demasiado largo</td><td>bajarlo a 100 ms en las lecturas</td></tr>
       <tr><td>El programa no sube</td><td>placa o puerto mal elegidos</td><td>proyecto de tipo UNO y puerto conectado</td></tr>

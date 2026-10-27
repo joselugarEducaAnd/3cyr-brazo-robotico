@@ -10,8 +10,7 @@
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
 <script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
 <script src="../idevices/quick-questions/quick-questions.js"></script><link rel="stylesheet" href="../idevices/quick-questions/quick-questions.css">
-<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script>
-<script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
 </head>
 <body class="exe-export exe-web-site">
 <script>document.body.className+=" js"</script>
@@ -88,12 +87,15 @@
   <table class="tabla-datos">
     <thead><tr><th>Mando</th><th>Pin</th><th>Bloque para leerlo</th><th>Qué devuelve</th></tr></thead>
     <tbody>
-      <tr><td>Pulsador SW1</td><td>2</td><td><code>Leer digital Pin 2</code></td><td>On/Off</td></tr>
-      <tr><td>Pulsador SW2</td><td>3</td><td><code>Leer digital Pin 3</code></td><td>On/Off</td></tr>
+      <tr><td>Pulsador SW1</td><td>2</td><td><code>Leer digital Pin 2</code></td><td>Off si está pulsado · On si no</td></tr>
+      <tr><td>Pulsador SW2</td><td>3</td><td><code>Leer digital Pin 3</code></td><td>Off si está pulsado · On si no</td></tr>
       <tr><td>Potenciómetro</td><td>A0</td><td><code>Leer analógica Pin A0</code></td><td>un número de 0 a 1023</td></tr>
     </tbody>
   </table>
   <p>Los pulsadores son <strong>entradas digitales</strong>: solo pueden decir «pulsado» o «sin pulsar».
+  Ojo, porque en el shield funcionan al revés de lo que parece: <strong>sin pulsar dan On</strong> y
+  <strong>al pulsar dan Off</strong>. Por dentro, cada pulsador lleva una resistencia que mantiene el pin a 5 V
+  hasta que el botón lo une con GND.
   El potenciómetro es una <strong>entrada analógica</strong>: da un valor continuo, como un volante.</p>
 </div>
 
@@ -105,14 +107,18 @@
   <ol>
     <li>Un bloque <strong>si … si no … si no</strong> (categoría <em>Control</em>; se amplía con la
     ruedecita del bloque).</li>
-    <li><strong>Si</strong> <code>Leer digital Pin 2</code> es <strong>On</strong> →
+    <li>Para cada condición, usad el bloque de comparar <strong>=</strong> (categoría <em>Lógica</em>):
+    a la izquierda, <code>Leer digital Pin …</code>, y a la derecha, el valor <strong>Off</strong> (también en
+    <em>Lógica</em>). Así la condición quiere decir «está pulsado».</li>
+    <li><strong>Si</strong> <code>Leer digital Pin 2</code> = <strong>Off</strong> (SW1 pulsado) →
     Servo Pin 7 · Grados <strong>45</strong> · Retardo 100</li>
-    <li><strong>Si no, si</strong> <code>Leer digital Pin 3</code> es <strong>On</strong> →
+    <li><strong>Si no, si</strong> <code>Leer digital Pin 3</code> = <strong>Off</strong> (SW2 pulsado) →
     Servo Pin 7 · Grados <strong>135</strong> · Retardo 100</li>
     <li><strong>Si no</strong> → Servo Pin 7 · Grados <strong>90</strong> · Retardo 100</li>
   </ol>
   <p><strong>Resultado esperado:</strong> mantenéis SW1 y el servo de la base gira a un lado; lo
-  soltáis y vuelve al centro; con SW2 gira al otro.</p>
+  soltáis y vuelve al centro; con SW2 gira al otro. Si el servo se va a un lado sin tocar nada, estáis
+  comparando con On en vez de con Off.</p>
   <p>Fijaos en que el retardo aquí es <strong>pequeño</strong> (100 ms): el programa tiene que volver a
   leer los pulsadores enseguida para que el servo responda al momento.</p>
 </div>

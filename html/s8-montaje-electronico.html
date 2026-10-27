@@ -10,8 +10,7 @@
 <script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
 <script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
 <script src="../idevices/scrambled-list/scrambled-list.js"></script><link rel="stylesheet" href="../idevices/scrambled-list/scrambled-list.css">
-<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script>
-<script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
 </head>
 <body class="exe-export exe-web-site">
 <script>document.body.className+=" js"</script>
@@ -81,7 +80,9 @@
 <div class="bloque bloque-resuelto">
   <p class="bloque-titulo">Paso 1 · Colocar el Arduino y cablear</p>
   <p>Fijad el Arduino con el shield sobre la base (con tornillos o con cinta de doble cara), con el
-  conector USB hacia fuera para poder enchufarlo. Después, con el USB desconectado, conectad los dos
+  conector USB hacia fuera para poder enchufarlo. Antes de fijarlo, comprobad que las patillas de abajo del shield
+  <strong>no tocan la parte metálica del conector USB</strong>: si la tocan, hay un cortocircuito y algún pulsador
+  deja de responder (separad un poco el shield o poned cinta aislante sobre el USB). Después, con el USB desconectado, conectad los dos
   servos al shield:</p>
   <svg viewBox="0 0 700 292" role="img" aria-label="Conexión de los servos al shield: cada servo va a un conector de tres pines serigrafiado D7, VCC, GND (base) y D8, VCC, GND (antebrazo); el cable naranja va al pin de señal, el rojo a VCC y el marrón a GND" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="700" height="292" fill="#fdfbf9"/>
